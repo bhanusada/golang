@@ -11,17 +11,17 @@ import (
 )
 
 func main() {
-/*
-	var (
-		sd  *xsd.Schema
-		err error
-	)
+	/*
+		var (
+			sd  *xsd.Schema
+			err error
+		)
 
-	xsd.PkgGen.BaseCodePath = "./"
-	if sd, err = xsd.LoadSchema("sample.xsd", true); err != nil {
-		log.Fatal(err)
-	}
-*/
+		xsd.PkgGen.BaseCodePath = "./"
+		if sd, err = xsd.LoadSchema("sample.xsd", true); err != nil {
+			log.Fatal(err)
+		}
+	*/
 
 	xmlfile, err := os.Open("sample.xml")
 	if err != nil {
@@ -30,16 +30,18 @@ func main() {
 	defer xmlfile.Close()
 	byteValue, _ := ioutil.ReadAll(xmlfile)
 
-	v := samplexsd.XsdGoPkgHasElem_OrderNumber{}
+	v := samplexsd.TxsdOrderCanonical{}
 
 	err = xml.Unmarshal([]byte(byteValue), &v)
 
 	v.Walk()
 
+	fmt.Println(v.XsdGoPkgHasElem_OrderDetails.OrderDetails.OrderHeader.XsdGoPkgHasElem_OrderNumber.OrderNumber)
+
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	fmt.Println(v)
+	fmt.Printf("%#v", v)
 
 }
