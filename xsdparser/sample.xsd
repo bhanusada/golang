@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="orderCanonical">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="transactionCode"/>
+                <xs:element ref="currentTimestamp"/>
+                <xs:element ref="orderDetails"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="transactionCode" type="xs:NCName"/>
+    <xs:element name="currentTimestamp" type="xs:NMTOKEN"/>
+    <xs:element name="orderDetails">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="orderHeader"/>
+                <xs:element ref="discounts"/>
+                <xs:element ref="orderLines"/>
+                <xs:element ref="orderSummary"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="orderHeader">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="receivingLocationNumber"/>
+                <xs:element ref="receivingLocationTypeCode"/>
+                <xs:element ref="merchandisingVendorNumber"/>
+                <xs:element ref="merchandisingDepartmentNumber"/>
+                <xs:element ref="distributionServiceTypeCode"/>
+                <xs:element ref="replenishmentMethodCode"/>
+                <xs:element ref="orderReasonCode"/>
+                <xs:element ref="orderNumber"/>
+                <xs:element ref="orderClass"/>
+                <xs:element ref="orderCreateDate"/>
+                <xs:element ref="orderCreateTimestamp"/>
+                <xs:element ref="lastUpdatedTimestamp"/>
+                <xs:element ref="expectedArrivalDate"/>
+                <xs:element ref="estimatedShipDate"/>
+                <xs:element ref="cancelEligibilityDate"/>
+                <xs:element ref="omtOrderTypeCode"/>
+                <xs:element ref="accountOrderTypeCode"/>
+                <xs:element ref="productOriginTypeCode"/>
+                <xs:element ref="productDestinationTypeCode"/>
+                <xs:element ref="orderRequestingSystemCode"/>
+                <xs:element ref="peggedOrderFlag"/>
+                <xs:element ref="specialOrderFlag"/>
+                <xs:element ref="orderHeaderVersionNumber"/>
+                <xs:element ref="orderStatusCode"/>
+                <xs:element ref="orderOpenTimestamp"/>
+                <xs:element ref="orderOpenSystemUserId"/>
+                <xs:element ref="newStoreFlag"/>
+                <xs:element ref="consignmentFlag"/>
+                <xs:element ref="commentText"/>
+                <xs:element ref="srcOrderRefId"/>
+                <xs:element ref="vendorCertifiedFlag"/>
+                <xs:element ref="orderTransmissionTypeCode"/>
+                <xs:element ref="storeExceptionRequestFlag"/>
+                <xs:element ref="keyrecTypeIndicator"/>
+                <xs:element ref="addressDetail"/>
+                <xs:element ref="paymentTermDetail"/>
+                <xs:element ref="headerUpdatedFlag"/>
+                <xs:element ref="freightTermCode"/>
+                <xs:element ref="freightOnboardCode"/>
+                <xs:element ref="transactionPurposeCode"/>
+                <xs:element ref="orderTypeCode"/>
+                <xs:element ref="documentTypeCode"/>
+                <xs:element ref="logId"/>
+                <xs:element ref="currencyTypeCode"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="receivingLocationNumber" type="xs:integer"/>
+    <xs:element name="receivingLocationTypeCode" type="xs:NCName"/>
+    <xs:element name="merchandisingVendorNumber" type="xs:integer"/>
+    <xs:element name="merchandisingDepartmentNumber" type="xs:integer"/>
+    <xs:element name="distributionServiceTypeCode" type="xs:integer"/>
+    <xs:element name="replenishmentMethodCode" type="xs:integer"/>
+    <xs:element name="orderReasonCode" type="xs:integer"/>
+    <xs:element name="orderNumber" type="xs:integer"/>
+    <xs:element name="orderClass" type="xs:integer"/>
+    <xs:element name="orderCreateDate" type="xs:NMTOKEN"/>
+    <xs:element name="orderCreateTimestamp" type="xs:NMTOKEN"/>
+    <xs:element name="lastUpdatedTimestamp" type="xs:NMTOKEN"/>
+    <xs:element name="expectedArrivalDate" type="xs:NMTOKEN"/>
+    <xs:element name="estimatedShipDate" type="xs:NMTOKEN"/>
+    <xs:element name="cancelEligibilityDate" type="xs:NMTOKEN"/>
+    <xs:element name="omtOrderTypeCode" type="xs:integer"/>
+    <xs:element name="accountOrderTypeCode" type="xs:integer"/>
+    <xs:element name="productOriginTypeCode" type="xs:integer"/>
+    <xs:element name="productDestinationTypeCode" type="xs:integer"/>
+    <xs:element name="orderRequestingSystemCode" type="xs:integer"/>
+    <xs:element name="peggedOrderFlag" type="xs:boolean"/>
+    <xs:element name="specialOrderFlag" type="xs:boolean"/>
+    <xs:element name="orderHeaderVersionNumber" type="xs:integer"/>
+    <xs:element name="orderStatusCode" type="xs:integer"/>
+    <xs:element name="orderOpenTimestamp" type="xs:NMTOKEN"/>
+    <xs:element name="orderOpenSystemUserId" type="xs:NCName"/>
+    <xs:element name="newStoreFlag" type="xs:boolean"/>
+    <xs:element name="consignmentFlag" type="xs:boolean"/>
+    <xs:element name="commentText" type="xs:string"/>
+    <xs:element name="srcOrderRefId" type="xs:integer"/>
+    <xs:element name="vendorCertifiedFlag" type="xs:boolean"/>
+    <xs:element name="orderTransmissionTypeCode" type="xs:integer"/>
+    <xs:element name="storeExceptionRequestFlag" type="xs:boolean"/>
+    <xs:element name="keyrecTypeIndicator" type="xs:NCName"/>
+    <xs:element name="addressDetail">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="addressLine1"/>
+                <xs:element ref="addressLine2"/>
+                <xs:element ref="city"/>
+                <xs:element ref="stateCode"/>
+                <xs:element ref="zipCode"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="addressLine1" type="xs:string"/>
+    <xs:element name="addressLine2">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="city" type="xs:string"/>
+    <xs:element name="stateCode" type="xs:NCName"/>
+    <xs:element name="zipCode" type="xs:integer"/>
+    <xs:element name="paymentTermDetail">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="paymentTermTypeCode"/>
+                <xs:element ref="paymentTermNumber"/>
+                <xs:element ref="paymentTermDescription"/>
+                <xs:element ref="storeTermIdentifier"/>
+                <xs:element ref="basisDateTypeCode"/>
+                <xs:element ref="paymentTermDiscountPercent"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="paymentTermTypeCode" type="xs:NCName"/>
+    <xs:element name="paymentTermNumber" type="xs:integer"/>
+    <xs:element name="paymentTermDescription" type="xs:string"/>
+    <xs:element name="storeTermIdentifier" type="xs:NMTOKEN"/>
+    <xs:element name="basisDateTypeCode" type="xs:NCName"/>
+    <xs:element name="paymentTermDiscountPercent" type="xs:decimal"/>
+    <xs:element name="headerUpdatedFlag" type="xs:boolean"/>
+    <xs:element name="freightTermCode" type="xs:NCName"/>
+    <xs:element name="freightOnboardCode" type="xs:NCName"/>
+    <xs:element name="transactionPurposeCode" type="xs:integer"/>
+    <xs:element name="orderTypeCode" type="xs:NCName"/>
+    <xs:element name="documentTypeCode" type="xs:NCName"/>
+    <xs:element name="logId" type="xs:NMTOKEN"/>
+    <xs:element name="currencyTypeCode" type="xs:NCName"/>
+    <xs:element name="discounts">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="discount"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="discount">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="discountTypeCode"/>
+                <xs:element ref="discountPercent"/>
+                <xs:element minOccurs="0" ref="subDiscounts"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="discountTypeCode" type="xs:NCName"/>
+    <xs:element name="discountPercent" type="xs:decimal"/>
+    <xs:element name="subDiscounts">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="subDiscount"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="subDiscount">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="subDiscountTypeCode"/>
+                <xs:element ref="subDiscountPercent"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="subDiscountTypeCode" type="xs:integer"/>
+    <xs:element name="subDiscountPercent" type="xs:decimal"/>
+    <xs:element name="orderLines">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="orderLine"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="orderLine">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="orderLineNumber"/>
+                <xs:element ref="orderLineVersionNumber"/>
+                <xs:element ref="adjustedOrderQuantity"/>
+                <xs:element ref="unitCostAmount"/>
+                <xs:element ref="unitRetailAmount"/>
+                <xs:element ref="skuNumber"/>
+                <xs:element ref="skuDescription"/>
+                <xs:element ref="skuShortDescription"/>
+                <xs:element ref="buyPackSize"/>
+                <xs:element ref="buyPackUoiCode"/>
+                <xs:element ref="vendorPartNumber"/>
+                <xs:element ref="orderLineStatusCode"/>
+                <xs:element ref="inTransitQuantity"/>
+                <xs:element ref="originalOrderQuantity"/>
+                <xs:element ref="totalShippedQuantity"/>
+                <xs:element ref="onOrderNotShippedQuantity"/>
+                <xs:element ref="receivedQuantity"/>
+                <xs:element ref="buyPackWeight"/>
+                <xs:element ref="buyPackWeightUomCode"/>
+                <xs:element ref="buyPackVolume"/>
+                <xs:element ref="buyPackVolumeUomCode"/>
+                <xs:element ref="unitOfMeasureCode"/>
+                <xs:element ref="universalProductCode"/>
+                <xs:element ref="lineUpdatedFlag"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="orderLineNumber" type="xs:integer"/>
+    <xs:element name="orderLineVersionNumber" type="xs:integer"/>
+    <xs:element name="adjustedOrderQuantity" type="xs:decimal"/>
+    <xs:element name="unitCostAmount" type="xs:decimal"/>
+    <xs:element name="unitRetailAmount" type="xs:decimal"/>
+    <xs:element name="skuNumber" type="xs:integer"/>
+    <xs:element name="skuDescription" type="xs:string"/>
+    <xs:element name="skuShortDescription" type="xs:string"/>
+    <xs:element name="buyPackSize" type="xs:decimal"/>
+    <xs:element name="buyPackUoiCode" type="xs:integer"/>
+    <xs:element name="vendorPartNumber" type="xs:NCName"/>
+    <xs:element name="orderLineStatusCode" type="xs:integer"/>
+    <xs:element name="inTransitQuantity" type="xs:decimal"/>
+    <xs:element name="originalOrderQuantity" type="xs:decimal"/>
+    <xs:element name="totalShippedQuantity" type="xs:decimal"/>
+    <xs:element name="onOrderNotShippedQuantity" type="xs:decimal"/>
+    <xs:element name="receivedQuantity" type="xs:decimal"/>
+    <xs:element name="buyPackWeight" type="xs:decimal"/>
+    <xs:element name="buyPackWeightUomCode" type="xs:integer"/>
+    <xs:element name="buyPackVolume" type="xs:decimal"/>
+    <xs:element name="buyPackVolumeUomCode" type="xs:integer"/>
+    <xs:element name="unitOfMeasureCode" type="xs:NCName"/>
+    <xs:element name="universalProductCode" type="xs:integer"/>
+    <xs:element name="lineUpdatedFlag" type="xs:boolean"/>
+    <xs:element name="orderSummary">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="totalNumberOfDetailLines"/>
+                <xs:element ref="totalNumberOfDiscounts"/>
+                <xs:element ref="totalOrderRetailAmount"/>
+                <xs:element ref="totalOrderCostAmount"/>
+                <xs:element ref="totalOrderWeight"/>
+                <xs:element ref="totalOrderWeightUomCode"/>
+                <xs:element ref="totalOrderVolume"/>
+                <xs:element ref="totalOrderVolumeUomCode"/>
+                <xs:element ref="totalOrderQuantity"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="totalNumberOfDetailLines" type="xs:integer"/>
+    <xs:element name="totalNumberOfDiscounts" type="xs:integer"/>
+    <xs:element name="totalOrderRetailAmount" type="xs:decimal"/>
+    <xs:element name="totalOrderCostAmount" type="xs:decimal"/>
+    <xs:element name="totalOrderWeight" type="xs:decimal"/>
+    <xs:element name="totalOrderWeightUomCode" type="xs:integer"/>
+    <xs:element name="totalOrderVolume" type="xs:decimal"/>
+    <xs:element name="totalOrderVolumeUomCode" type="xs:integer"/>
+    <xs:element name="totalOrderQuantity" type="xs:decimal"/>
+</xs:schema>

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="1.0">
+	<xsd:element name="orderCanonical">
+			<xsd:complexType>
+				<xsd:sequence>
+					<xsd:element name="transactionCode" type="xsd:string"/> <!--Possible values: ADD, MODIFY, RESEND, SEARCH -->					
+					<xsd:element name="currentTimestamp" type="xsd:dateTime"/> <!-- This is Order Canonical Publication timeStamp -->
+					<xsd:element name="orderDetails"> <!-- It holds Header, Line Item, Discount and Order Summary information -->
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="orderHeader">
+							<xsd:complexType>
+								<xsd:sequence>
+										<xsd:element name="shippingLocationNumber" type="xsd:string" minOccurs="0"/> <!--Identifies a HD location that will ship/has shipped an order -DC#-->
+										<xsd:element name="shippingLocationTypeCode" type="xsd:string" minOccurs="0"/>  <!--Type of HD location that transports shipment -->
+										<xsd:element name="receivingLocationNumber" type="xsd:string"/>  <!--Receiving Location Number like Store# or DC#  -->
+										<xsd:element name="receivingLocationTypeCode" type="xsd:string"/>  <!--Receiving Location Type  like 'STR','DC' -->
+										<xsd:element name="merchandisingVendorNumber" type="xsd:int" minOccurs="0"/>  <!--Vendor Number  -->
+										<xsd:element name="merchandisingDepartmentNumber" type="xsd:short" minOccurs="0"/>  <!-- Department Number -->
+										<xsd:element name="distributionServiceTypeCode" type="xsd:short"/>  <!--Distribution Service type code  -->
+										<xsd:element name="replenishmentMethodCode" type="xsd:short"/>  <!-- Replenishment Method Code -->
+										<xsd:element name="orderReasonCode" type="xsd:short" minOccurs="0"/>  <!-- Order Reason Code -->
+										<xsd:element name="orderNumber" type="xsd:int"/> <!-- Order Number -->
+										<xsd:element name="orderClass" type="xsd:short"/> <!-- 1= Internal, 2=External, 3=Gift Card, 4=Returns -->
+										<xsd:element name="orderCreateDate" type="xsd:date"/> <!-- Order creation date -->
+										<xsd:element name="orderCreateTimestamp" type="xsd:dateTime"/> <!-- Order creation timestamp -->
+										<xsd:element name="lastUpdatedTimestamp" type="xsd:dateTime" minOccurs="0"/> <!-- Order Changed timestamp -->
+										<xsd:element name="expectedArrivalDate" type="xsd:date"/>  <!--Expected Arrival Date -->
+										<xsd:element name="estimatedShipDate" type="xsd:date" minOccurs="0"/> <!-- Estimated Ship Date -->
+										<xsd:element name="cancelEligibilityDate" type="xsd:date" minOccurs="0"/>  <!-- Cancel Eligibility Date -->
+										<xsd:element name="orderCancelTimestamp" type="xsd:dateTime" minOccurs="0"/>  <!-- The TS when the order is cancelled -->
+										<xsd:element name="orderClosedTimestamp" type="xsd:dateTime" minOccurs="0"/>  <!-- The date when the order is closed -->
+										<xsd:element name="omtOrderTypeCode" type="xsd:short"/> <!-- This code provides you various information about the Order type and demand generated application-->
+										<xsd:element name="accountOrderTypeCode" type="xsd:short" minOccurs="0"/> <!--Smart Logic replacement. This field same as ACCT-PO-TYP-CD as today  -->					
+										<xsd:element name="productOriginTypeCode" type="xsd:short"/> <!-- Source Type  -->										
+										<xsd:element name="productDestinationTypeCode" type="xsd:short"/> <!-- Destination Type -->										
+										<xsd:element name="orderRequestingSystemCode" type="xsd:short"/> <!-- Requesting System type  -->										
+										<xsd:element name="peggedOrderFlag" type="xsd:boolean"/> <!-- Pegged Order Flag -->										
+										<xsd:element name="specialOrderFlag" type="xsd:boolean"/> <!-- Special order Flag  -->	
+										<xsd:element name="inboundOrderTypeCode" type="xsd:short" minOccurs="0"/> <!-- Inbound Order Type -->											
+										<xsd:element name="orderHeaderVersionNumber" type="xsd:short"/>  <!-- Order Version Number -->
+										<xsd:element name="orderStatusCode" type="xsd:short"/> <!-- Order Status Code 1=Suspense, 2=Open, 3=Closed, 4=Cancel-->
+										<xsd:element name="orderOpenTimestamp" type="xsd:dateTime"/> <!-- Order open timestamp -->										
+										<xsd:element name="orderOpenSystemUserId" type="xsd:string" minOccurs="0"/> <!-- Order Open Id -->
+										<xsd:element name="newStoreFlag" type="xsd:boolean"/> <!-- New Store Flag -->
+										<xsd:element name="consignmentFlag" type="xsd:boolean"/> <!-- Consignment Flag -->
+										<xsd:element name="commentText" type="xsd:string" minOccurs="0" /> <!-- Order comment Text -->
+										<xsd:element name="wmsShippingNumber" type="xsd:string" minOccurs="0"/>  <!-- WMS Shipping Number -->
+										<xsd:element name="allocationId" type="xsd:int" minOccurs="0"/>  <!-- Allocation Id from Host -->
+										<xsd:element name="srcOrderRefId" type="xsd:int" minOccurs="0"/>  <!-- Source Reference Order Reference ID from DCM -->
+										<xsd:element name="omtOrderRefTypeCode" type="xsd:short" minOccurs="0"/> <!-- This code provides you various information about Source of the OrderRefId and demand generated application-->									
+										<xsd:element name="vendorCertifiedFlag" type="xsd:boolean" minOccurs="0"/>  <!-- whether the vendor is a certified vendor or not -->
+										<xsd:element name="orderTransmissionTypeCode" type="xsd:short" minOccurs="0"/> <!-- EDI = 1, AFAX=2,Override EDI = 3, Manual = 4 -->
+										<xsd:element name="relatedOrders" minOccurs="0" maxOccurs="1">
+											<xsd:complexType>
+                                               <xsd:sequence>
+													<xsd:element name="relatedOrder" minOccurs="1" maxOccurs="unbounded">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="relatedOrderNumber" type="xsd:string"/>   <!-- Related Order Number -->
+																<xsd:element name="relatedOrderCreateDate" type="xsd:date"/>  <!-- Related Order Create Date -->
+																<xsd:element name="relatedOrderSourceTypeCode" type="xsd:short"/> 
+																<!--Ex: 2 - Legacy, 3 - POM -->
+																<xsd:element name="orderRelationTypeCode" type="xsd:short"/>  
+																<!-- Defines the relationship between the Order and the reference Order, Possible values: 1 – RDC Allocation-->
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+                                               </xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="orderProductGroupCode" type="xsd:short" minOccurs="0"/><!--identifies a grouping of sku's joined together for purposes of creating an order -->		
+										<xsd:element name="storeExceptionRequestFlag" type="xsd:boolean" minOccurs="0"/> <!--SER flag  -->
+										<xsd:element name="firstReceiptTimestamp" type="xsd:dateTime" minOccurs="0" /> <!-- First receipt timestamp -->
+										<xsd:element name="keyrecTypeIndicator" type="xsd:string" minOccurs="0"/> <!--Keyrec Type Indicator which will have values 'RM','TI','CN'  -->
+																			<!--– For Vendor to RDC, if the Vendor is Consignment then CN else RM
+																				  For 2Tier, it is TI
+																				  For import POs, Transload to SDC, this is set to TI. For Vendor to SDC, this is set to RM
+																				  For Store to RDC transfer, this is set to TI
+																				  For Transload to RDC, this is set to TI. 
+																				  For Vendor to DFC, this is set to RM -->
+										<xsd:element name="addressDetail" minOccurs="0" maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:sequence>
+												<xsd:element name="addressLine1" type="xsd:string" minOccurs="0"/>
+												<xsd:element name="addressLine2" type="xsd:string" minOccurs="0"/>
+												<xsd:element name="city" type="xsd:string" minOccurs="0"/>
+												<xsd:element name="stateCode" type="xsd:string" minOccurs="0"/>
+												<xsd:element name="zipCode" type="xsd:string" minOccurs="0"/>
+											</xsd:sequence>
+										</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="paymentTermDetail" minOccurs="0">
+										<xsd:complexType>
+											<xsd:sequence>
+												<xsd:element name="paymentTermTypeCode" type="xsd:string"/>
+												<xsd:element name="paymentTermNumber" type="xsd:short"/>
+												<xsd:element name="paymentTermDescription" type="xsd:string"/>
+												<xsd:element name="storeTermIdentifier" type="xsd:string" minOccurs="0" /> <!-- 10 Digit Charecter from PAY_TRM table-->
+												<xsd:element name="basisDateTypeCode" type="xsd:string"/> <!--type of date on which payterm terms are based;e.g.,date of invoice, date received,etc. -->
+												<xsd:element name="paymentTermDiscountPercent" type="xsd:decimal"/>												
+											</xsd:sequence>
+										</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="headerUpdatedFlag" type="xsd:boolean"/>  <!-- A flag to show atleast one field is changed or not -->
+										<xsd:element name="updatedHeaderFields" minOccurs="0" maxOccurs="1"><!--Optional. All the modified field names will come as a list-->
+										<xsd:complexType>
+											<xsd:sequence>
+												<xsd:element type="xsd:string" name="updatedHeaderField" minOccurs="1" maxOccurs="unbounded"/>
+											</xsd:sequence>
+										</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="actionType" type="xsd:string" minOccurs="0" />
+										<xsd:element name="createProgramId" type="xsd:string" minOccurs="0" />
+										<xsd:element name="createSystemUserId" type="xsd:string" minOccurs="0" />
+										<xsd:element name="lastUpdateProgramId" type="xsd:string" minOccurs="0" />
+										<xsd:element name="lastUpdateSystemUserId" type="xsd:string" minOccurs="0" />
+										<xsd:element name="postReceiptFlag" type="xsd:boolean" minOccurs="0" />
+										<xsd:element name="aggExpectedArrivalDate" type="xsd:date" minOccurs="0" />
+										<xsd:element name="orderSourceLocationNumber" type="xsd:short" minOccurs="0" />
+										<xsd:element name="estimatedOrderCreateDate" type="xsd:date" minOccurs="0" />
+										<xsd:element name="thdAsnId" type="xsd:integer" minOccurs="0" />
+										<xsd:element name="totalOrderRetailAmount" type="xsd:decimal" minOccurs="0" />
+										<xsd:element name="totalOrderCostAmount" type="xsd:decimal" minOccurs="0" />
+										<xsd:element name="totalOrderWeight" type="xsd:double" minOccurs="0" />
+										<xsd:element name="totalOrderWeightUomCode" type="xsd:short" minOccurs="0" />
+										<xsd:element name="totalOrderVolume" type="xsd:double" minOccurs="0" />
+										<xsd:element name="totalOrderVolumeUomCode" type="xsd:short" minOccurs="0" />
+										<xsd:element name="freightTermCode" type="xsd:string" minOccurs="0" />
+										<xsd:element name="freightOnboardCode" type="xsd:string" minOccurs="0" />
+									    <xsd:element name="transactionPurposeCode" type="xsd:string" minOccurs="0" />  <!--- Always populated as “00” for the External Orders Sent to EDI queue -->
+									    <xsd:element name="orderTypeCode" type="xsd:string" minOccurs="0" /> <!--- Always populated as “NE” for the External Orders Sent to EDI queue -->
+									    <xsd:element name="documentTypeCode" type="xsd:string" minOccurs="0" />  <!--- Always populated as “POREGMRCH” for the External Orders Sent to EDI queue -->
+										<xsd:element name="logId" type="xsd:string" minOccurs="0" /> <!-- Combination of OrderId_OrderCreateTimeStamp -->
+										<xsd:element name="currencyTypeCode" type="xsd:string" minOccurs="0" /> <!-- THE TYPE OF CURRENCY THAT IS CURRENTLY USED TO PAY A VENDOR-->
+								</xsd:sequence>
+							</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="discounts" minOccurs="0" maxOccurs="1">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="discount" minOccurs="1" maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:sequence>
+												<xsd:element name="discountTypeCode" type="xsd:string"/>  <!--Discount Abbrevation Code  -->				
+												<xsd:element name="discountPercent" type="xsd:decimal"/>  <!--Percentage Discount  -->												
+												<xsd:element name="subDiscounts" minOccurs="0" maxOccurs="1">
+													<xsd:complexType>
+														<xsd:sequence>
+															<xsd:element name="subDiscount" minOccurs="1" maxOccurs="unbounded">
+																<xsd:complexType>
+																	<xsd:sequence>
+																		<xsd:element name="subDiscountTypeCode" type="xsd:short"/>																		
+																		<xsd:element name="subDiscountPercent" type="xsd:decimal"/>
+																	</xsd:sequence>
+																</xsd:complexType>
+															</xsd:element>
+														</xsd:sequence>
+													</xsd:complexType>
+												</xsd:element>	
+											</xsd:sequence>	
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+							</xsd:element>	
+							<xsd:element name="orderLines" >
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="orderLine" minOccurs="1" maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:sequence>
+												<xsd:element name="orderLineNumber" type="xsd:short"/>  <!--Line Number Assigned by POM -->
+												<xsd:element name="wmsRequestSequenceNumber" type="xsd:int" minOccurs="0"/>  <!--Seq# required for WMS -->
+												<xsd:element name="orderLineVersionNumber" type="xsd:short"/>  <!--Order Line Version Number -->
+												<xsd:element name="adjustedOrderQuantity" type="xsd:double"/>   <!-- Latest line quantity -->
+												<xsd:element name="unitCostAmount" type="xsd:decimal"/>  <!--Line Item unit cost -->
+												<xsd:element name="unitRetailAmount" type="xsd:decimal"/>  <!--Line Item Retail Price -->
+												<xsd:element name="skuNumber" type="xsd:int"/>
+												<xsd:element name="hazmatCode" type="xsd:string" minOccurs="0"/>
+												<xsd:element name="skuDescription" type="xsd:string"/>  <!-- Capture from Base data -->
+												<xsd:element name="skuShortDescription" type="xsd:string"/> <!-- Capture from Base data -->
+												<xsd:element name="buyPackSize" type="xsd:double"/>
+												<xsd:element name="buyPackUoiCode" type="xsd:short"/> <!-- Buy pack Unit of Issue Code-->
+												<xsd:element name="vendorPartNumber" type="xsd:string" minOccurs="0"/>  <!--Vendor Part Number -->
+												<xsd:element name="orderLineStatusCode" type="xsd:short"/> <!-- 1=Suspense, 2=Open, 3=Closed, 4=Cancel -->
+												<xsd:element name="visibilityStatusCode" type="xsd:short" minOccurs="0"/> <!-- TIBCO detail status codes -->
+												<xsd:element name="visibilityLocationCode" type="xsd:short" minOccurs="0"/> <!-- TIBCO location status codes-->
+												<xsd:element name="visibilityExpectedArrivalDate" type="xsd:date" minOccurs="0"/> <!-- TIBCO revised date -->
+												<xsd:element name="visibilityFeedReceivedTimestamp" type="xsd:dateTime" minOccurs="0"/> <!-- TIBCO feed TS -->												
+												<xsd:element name="inTransitQuantity" type="xsd:double"/>
+												<xsd:element name="originalOrderQuantity" type="xsd:double"/>
+												<xsd:element name="totalShippedQuantity" type="xsd:double"/>
+												<xsd:element name="onOrderNotShippedQuantity" type="xsd:double"/>
+												<xsd:element name="receivedQuantity" type="xsd:double"/>
+												<xsd:element name="firstReceiptTimestamp" type="xsd:dateTime" minOccurs="0" /> <!-- First receipt timestamp -->
+												<xsd:element name="aisleBaySequenceId" type="xsd:string" minOccurs="0"/>  <!-- Capture from Base data -->
+        										<xsd:element name="buyPackWeight" type="xsd:double"/>  <!-- Buy pack weight of the Order -->
+												<xsd:element name="buyPackWeightUomCode" type="xsd:short"/>  <!-- UOM code of the buy pack weight of the order -->
+												<xsd:element name="buyPackVolume" type="xsd:double" minOccurs="0"/>  <!-- line volume cube of the buy pack -->
+												<xsd:element name="buyPackVolumeUomCode" type="xsd:short" minOccurs="0"/>  <!-- buy pack volume code  -->
+												<xsd:element name="unitOfMeasureCode" type="xsd:string" minOccurs="0"/>   <!-- Unit of Measure Code from SKU table -->
+												<xsd:element name="universalProductCode" type="xsd:string" minOccurs="0"/> <!-- Universal Product Code UPC -->
+												<xsd:element name="lineUpdatedFlag" type="xsd:boolean"/>  <!-- This flag will be set to true if any of the line element gets updated -->
+												<xsd:element name="updatedDetailFields" minOccurs="0" maxOccurs="1"> <!--Optional. All the modified field names will come as a list-->
+												<xsd:complexType>
+													<xsd:sequence>
+														<xsd:element type="xsd:string" name="updatedDetailField" minOccurs="1" maxOccurs="unbounded"/>
+													</xsd:sequence>
+												</xsd:complexType>
+												</xsd:element>
+												<xsd:element name="createProgramId" type="xsd:string" minOccurs="0" />
+												<xsd:element name="createSystemUserId" type="xsd:string" minOccurs="0" />
+												<xsd:element name="lastUpdateSystemUserId" type="xsd:string" minOccurs="0" />
+												<xsd:element name="lastUpdateProgramId" type="xsd:string" minOccurs="0" />
+												<xsd:element name="createTimeStamp" type="xsd:dateTime" minOccurs="0" />
+												<xsd:element name="lastUpdatedTimestamp" type="xsd:dateTime" minOccurs="0" />
+												<xsd:element name="isPrepackSku" type="xsd:string" minOccurs="0" />
+												<xsd:element name="costOverrideFlag" type="xsd:boolean" minOccurs="0" />
+												<xsd:element name="handlingDispositionType" type="xsd:string" minOccurs="0" />
+											</xsd:sequence>
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="orderSummary">
+							<xsd:complexType>
+								<xsd:sequence>
+										<xsd:element name="totalNumberOfDetailLines" type="xsd:short"/>  <!--Number of detail Lines -->
+										<xsd:element name="totalNumberOfDiscounts" type="xsd:short" minOccurs="0"/>  <!--Number of discount lines -->
+										<xsd:element name="totalOrderRetailAmount" type="xsd:decimal"/>  <!-- Total retail amount of the Order -->
+										<xsd:element name="totalOrderCostAmount" type="xsd:decimal"/>  <!-- Total cost amount of the Order -->
+										<xsd:element name="totalOrderWeight" type="xsd:double"/>  <!-- Total weight of the Order -->
+										<xsd:element name="totalOrderWeightUomCode" type="xsd:short"/>  <!-- UOM code of total weight of the order -->
+										<xsd:element name="totalOrderVolume" type="xsd:double" minOccurs="0"/>  <!-- Total volume cube of the Order -->
+										<xsd:element name="totalOrderVolumeUomCode" type="xsd:short" minOccurs="0"/>  <!-- Total order Cube measurement code -->
+										<xsd:element name="totalOrderQuantity" type="xsd:double"/>  <!-- Total order Quantity -->
+								</xsd:sequence>
+							</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+	</xsd:element>					
+</xsd:schema>
