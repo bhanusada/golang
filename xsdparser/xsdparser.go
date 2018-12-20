@@ -1,14 +1,12 @@
-package main
+package xsdparser
 
 import (
 	"encoding/xml"
 	"fmt"
-	"io/ioutil"
 	"log"
-	"os"
 
 	samplexsd "github.com/bhanu/xsdparser/go_Sample"
-	"gopkg.in/go-playground/validator.v9"
+	validator "gopkg.in/go-playground/validator.v9"
 
 	//samplexsd "github.com/bhanu/xsdparser/go_order"
 	xsd "github.com/metaleap/go-xsd"
@@ -16,22 +14,24 @@ import (
 
 var validate *validator.Validate
 
-func main() {
+func Parse(xmlfile []byte) {
 
 	validate = validator.New()
 
-	command := os.Args[1]
+	//command := os.Args[1]
+
+	command := "v"
 
 	switch command {
 	case "g":
 		generateXSDTypes()
 		fmt.Println("Generating XSD types.")
 	case "v":
-		validateXML()
+		validateXML(xmlfile)
 		fmt.Println("Validating XSD.")
 	default:
 		fmt.Println("Inappropriate args.")
-		validateXML()
+		validateXML(xmlfile)
 	}
 
 }
@@ -50,17 +50,18 @@ func generateXSDTypes() {
 	sd.MakeGoPkgSrcFile()
 }
 
-func validateXML() {
-	xmlfile, err := os.Open("sample.xml")
+func validateXML(xmlfile []byte) {
+	/*xmlfile, err := os.Open("sample.xml")
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer xmlfile.Close()
-	byteValue, _ := ioutil.ReadAll(xmlfile)
+	defer xmlfile.Close() */
+
+	//byteValue, _ := ioutil.ReadAll(xmlfile)
 
 	v := samplexsd.TxsdOrderCanonical{}
 
-	err = xml.Unmarshal([]byte(byteValue), &v)
+	err := xml.Unmarshal(xmlfile, &v)
 
 	v.Walk()
 
