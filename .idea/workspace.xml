@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a36f411-15ac-4f46-ad71-b71bba07a9a2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/xmlparser/xmlparser.go" beforeDir="false" afterPath="$PROJECT_DIR$/xmlparser/xmlparser.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xmlvalidation/Order_Canonical_850_MincronPO.xsd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xsdparser/xsdparser.go" beforeDir="false" afterPath="$PROJECT_DIR$/xsdparser/xsdparser.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,20 +24,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/reverse/reverse.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
+            <state relative-caret-position="306">
               <caret line="22" column="38" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/xmlparser/xmlparser.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-221">
-              <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-              <folding>
-                <element signature="e#14#73#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-136">
+              <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server/server.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -47,11 +51,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/xsdparser/xsdparser.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="969">
-              <caret line="57" selection-start-line="57" selection-end-line="57" />
-              <folding>
-                <element signature="e#14#209#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="918">
+              <caret line="64" selection-start-line="64" selection-end-line="64" />
             </state>
           </provider>
         </entry>
@@ -60,7 +61,7 @@
         <entry file="file://$PROJECT_DIR$/xsdparser/sample.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="561" selection-start-column="550" selection-end-column="561" />
+              <caret column="38" selection-start-column="38" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -69,7 +70,7 @@
         <entry file="file://$PROJECT_DIR$/xmlparser/sample.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="470" selection-start-column="550" selection-end-column="558" />
+              <caret column="38" selection-start-column="38" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -100,6 +101,7 @@
         <option value="$PROJECT_DIR$/xmlparser/sample.xml" />
         <option value="$PROJECT_DIR$/xmlparser/xmlparser.go" />
         <option value="$PROJECT_DIR$/xsdparser/xsdparser.go" />
+        <option value="$PROJECT_DIR$/server/server.go" />
       </list>
     </option>
   </component>
@@ -126,6 +128,11 @@
               <item name="bhanu" type="b2602c69:ProjectViewProjectNode" />
               <item name="bhanu" type="462c0819:PsiDirectoryNode" />
               <item name="readfile" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bhanu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bhanu" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="bhanu" type="b2602c69:ProjectViewProjectNode" />
@@ -189,11 +196,9 @@
     <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2182285" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1931964" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="REST Client" weight="0.3822342" />
-      <window_info anchor="bottom" id="Messages" weight="0.32974428" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32896653" />
@@ -204,8 +209,10 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.20967741" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.19354838" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="REST Client" order="12" weight="0.3822342" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32974428" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -216,20 +223,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/fibonacci/fibonacci.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/reverse/reverse.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="22" column="38" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/rest-api.http">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -239,13 +232,7 @@
     <entry file="file://$PROJECT_DIR$/readfile/readfile.go">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/xmlparser/sample.xsd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="39" column="50" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/xmlparser/sample.xsd" />
     <entry file="file://$PROJECT_DIR$/xsdparser/go_Sample/go_Sample.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="349">
@@ -253,37 +240,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/fibonacci/fibonacci.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reverse/reverse.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="22" column="38" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xsdparser/xsdparser.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/xsdparser/sample.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="561" selection-start-column="550" selection-end-column="561" />
+          <caret column="38" selection-start-column="38" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/xmlparser/sample.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="470" selection-start-column="550" selection-end-column="558" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xsdparser/xsdparser.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
-          <folding>
-            <element signature="e#14#209#0" expanded="true" />
-          </folding>
+          <caret column="38" selection-start-column="38" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/xmlparser/xmlparser.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-221">
-          <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-          <folding>
-            <element signature="e#14#73#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-136">
+          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/server.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
         </state>
       </provider>
     </entry>

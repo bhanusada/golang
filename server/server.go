@@ -9,30 +9,44 @@ import (
 )
 
 func main() {
+
+	//mux := http.NewServeMux()
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("got the request.")
 		w.Write([]byte("helloworld"))
 	})
 
-	http.HandleFunc("/upload", handler)
+	uh := uploadHandler()
+
+	http.Handle("/upload", uh)
 
 	http.ListenAndServe(":8080", nil)
 }
 
-func handler(w http.ResponseWriter, r *http.Request) {
+func uploadHandler() http.Handler {
 
-	switch r.Method {
-	case "GET":
-		fmt.Printf("Request method : %s", r.Method)
-	case "POST":
-		fmt.Printf("Request method : %s", r.Method)
-		fmt.Println()
+	fmt.Println("request")
 
-		body, _ := ioutil.ReadAll(r.Body)
-		fmt.Println(string(body))
+	fn := func(w http.ResponseWriter, r *http.Request) {
 
-		xsdparser.Parse(body)
+		switch r.Method {
+
+		case "GET":
+			fmt.Printf("Request method : %s", r.Method)
+		case "POST":
+			fmt.Printf("Request method : %s", r.Method)
+			fmt.Println()
+
+			body, _ := ioutil.ReadAll(r.Body)
+			fmt.Println(string(body))
+
+			xsdparser.Parse(body)
+		}
+
+		fmt.Fprint(w, "processed")
 	}
 
-	fmt.Fprint(w, "processed")
+	return http.HandlerFunc(fn)
+
 }
