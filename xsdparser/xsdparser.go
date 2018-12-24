@@ -13,27 +13,30 @@ import (
 )
 
 var validate *validator.Validate
+var parsedxml = samplexsd.TxsdOrderCanonical{}
 
-func Parse(xmlfile []byte) {
+//Parse XMLs to check for validity
+func Parse(xmlfile []byte) (string, error) {
+	var docTypeCode string
+	err := xml.Unmarshal(xmlfile, &parsedxml)
+	docTypeCode = parsedxml.OrderDetails.OrderHeader.DocumentTypeCode.String()
+	return docTypeCode, err
+	//parsedxml.Walk()
 
-	validate = validator.New()
+	/*	command := "v"
 
-	//command := os.Args[1]
-
-	command := "v"
-
-	switch command {
-	case "g":
-		generateXSDTypes()
-		fmt.Println("Generating XSD types.")
-	case "v":
-		validateXML(xmlfile)
-		fmt.Println("Validating XSD.")
-	default:
-		fmt.Println("Inappropriate args.")
-		validateXML(xmlfile)
-	}
-
+		switch command {
+		case "g":
+			generateXSDTypes()
+			fmt.Println("Generating XSD types.")
+		case "v":
+			validateXML(xmlfile)
+			fmt.Println("Validating XSD.")
+		default:
+			fmt.Println("Inappropriate args.")
+			validateXML(xmlfile)
+		}
+	*/
 }
 
 func generateXSDTypes() {
@@ -41,16 +44,15 @@ func generateXSDTypes() {
 		sd  *xsd.Schema
 		err error
 	)
-
 	xsd.PkgGen.BaseCodePath = "./"
 	if _, err = xsd.LoadSchema("order.xsd", true); err != nil {
 		log.Fatal(err)
 	}
-
 	sd.MakeGoPkgSrcFile()
 }
 
-func validateXML(xmlfile []byte) {
+//ValidateXML method to validate a given XML against specific XSD
+func ValidateXML(xmlfile []byte) {
 	/*xmlfile, err := os.Open("sample.xml")
 	if err != nil {
 		log.Fatal(err)
@@ -58,20 +60,13 @@ func validateXML(xmlfile []byte) {
 	defer xmlfile.Close() */
 
 	//byteValue, _ := ioutil.ReadAll(xmlfile)
-
-	v := samplexsd.TxsdOrderCanonical{}
-
-	err := xml.Unmarshal(xmlfile, &v)
-
-	v.Walk()
-
-	err = validate.Struct(v)
+	validate = validator.New()
+	err := validate.Struct(parsedxml)
 	if err != nil {
 		if _, ok := err.(*validator.InvalidValidationError); ok {
 			fmt.Println(err)
 			return
 		}
-
 		for _, err := range err.(validator.ValidationErrors) {
 			fmt.Println(err.Namespace())
 			fmt.Println(err.Field())
@@ -85,17 +80,10 @@ func validateXML(xmlfile []byte) {
 			fmt.Println(err.Param())
 			fmt.Println()
 		}
-
 		return
 	}
-
 	//fmt.Println(v.XsdGoPkgHasElem_OrderDetails.OrderDetails.OrderHeader.XsdGoPkgHasElem_OrderNumber.OrderNumber)
 	//v.TransactionCode.Set("MODIFY")
 	//fmt.Println(v.TransactionCode)
-
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	fmt.Printf("%#v", v)
+	fmt.Printf("%#v", parsedxml)
 }
