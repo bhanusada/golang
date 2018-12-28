@@ -52,7 +52,7 @@ func generateXSDTypes() {
 }
 
 //ValidateXML method to validate a given XML against specific XSD
-func ValidateXML(xmlfile []byte) {
+func ValidateXML() error {
 	/*xmlfile, err := os.Open("sample.xml")
 	if err != nil {
 		log.Fatal(err)
@@ -62,10 +62,11 @@ func ValidateXML(xmlfile []byte) {
 	//byteValue, _ := ioutil.ReadAll(xmlfile)
 	validate = validator.New()
 	err := validate.Struct(parsedxml)
+	fmt.Printf("Transaction code : %s", parsedxml.TransactionCode.String())
 	if err != nil {
 		if _, ok := err.(*validator.InvalidValidationError); ok {
 			fmt.Println(err)
-			return
+			return err
 		}
 		for _, err := range err.(validator.ValidationErrors) {
 			fmt.Println(err.Namespace())
@@ -80,10 +81,11 @@ func ValidateXML(xmlfile []byte) {
 			fmt.Println(err.Param())
 			fmt.Println()
 		}
-		return
+		return err
 	}
 	//fmt.Println(v.XsdGoPkgHasElem_OrderDetails.OrderDetails.OrderHeader.XsdGoPkgHasElem_OrderNumber.OrderNumber)
 	//v.TransactionCode.Set("MODIFY")
 	//fmt.Println(v.TransactionCode)
 	fmt.Printf("%#v", parsedxml)
+	return nil
 }

@@ -39,13 +39,18 @@ func uploadHandler() http.Handler {
 			body, _ := ioutil.ReadAll(r.Body)
 			//fmt.Println(string(body))
 			extractxmlroot(&body)
-			parsedxml, err := xsdparser.Parse(&body)
-			if err != nil {
-				log.Fatal(err)
+			if validate() == nil {
+				parsedxml, err := xsdparser.Parse(&body)
+				if err != nil {
+					log.Fatal(err)
+				}
+				fmt.Println(parsedxml)
+				fmt.Fprint(w, "XML is valid. Processed")
+			} else {
+				fmt.Fprint(w, "XML is invalid")
 			}
-			fmt.Println(parsedxml)
 		}
-		fmt.Fprint(w, "processed")
+
 	}
 	return http.HandlerFunc(fn)
 }
@@ -63,4 +68,8 @@ func extractxmlroot(xmlfile *[]byte) {
 	result := gomongo.DetermineDocFlow(v.XMLName.Local)
 
 	fmt.Println(result)
+}
+
+func validate() error {
+	return xsdparser.ValidateXML()
 }
