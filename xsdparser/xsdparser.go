@@ -16,9 +16,9 @@ var validate *validator.Validate
 var parsedxml = samplexsd.TxsdOrderCanonical{}
 
 //Parse XMLs to check for validity
-func Parse(xmlfile []byte) (string, error) {
+func Parse(xmlfile *[]byte) (string, error) {
 	var docTypeCode string
-	err := xml.Unmarshal(xmlfile, &parsedxml)
+	err := xml.Unmarshal(*xmlfile, &parsedxml)
 	docTypeCode = parsedxml.OrderDetails.OrderHeader.DocumentTypeCode.String()
 	return docTypeCode, err
 	//parsedxml.Walk()

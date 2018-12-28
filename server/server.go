@@ -38,8 +38,8 @@ func uploadHandler() http.Handler {
 			fmt.Println()
 			body, _ := ioutil.ReadAll(r.Body)
 			//fmt.Println(string(body))
-			extractxmlroot(body)
-			parsedxml, err := xsdparser.Parse(body)
+			extractxmlroot(&body)
+			parsedxml, err := xsdparser.Parse(&body)
 			if err != nil {
 				log.Fatal(err)
 			}
@@ -50,10 +50,10 @@ func uploadHandler() http.Handler {
 	return http.HandlerFunc(fn)
 }
 
-func extractxmlroot(xmlfile []byte) {
+func extractxmlroot(xmlfile *[]byte) {
 	var v = xmlroot{}
 
-	err := xml.Unmarshal(xmlfile, &v)
+	err := xml.Unmarshal(*xmlfile, &v)
 	if err != nil {
 		log.Fatal(err)
 	}
