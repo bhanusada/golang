@@ -25,7 +25,8 @@ func init() {
 		log.Fatal(readerr)
 	}*/
 	var err error
-	client, err = mongo.NewClient("mongodb://localhost:27017")
+	client, err = mongo.NewClient("mongodb://qars1db3adm1:wUch3BaV@172.24.112.111:27017/?authSource=qars1db3")
+	//client, err = mongo.NewClient("mongodb://localhost:27017")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -41,8 +42,9 @@ func init() {
 }
 
 //DetermineDocFlow method lookup for available document types from Mongodb
-func DetermineDocFlow(doctype string) bsonx.Doc {
-	collection := client.Database("mydb").Collection("DocTypes")
+func DetermineDocFlow(doctype string) bool {
+	//collection := client.Database("mydb").Collection("DocTypes")
+	collection := client.Database("qars1db3").Collection("DocTypes")
 	/*res, err := collection.InsertOne(context.Background(), bson.M{"data": read})
 	if err != nil {
 		log.Fatal(err)
@@ -70,5 +72,5 @@ func DetermineDocFlow(doctype string) bsonx.Doc {
 			fmt.Println(raw)
 		} */
 
-	return doc
+	return doc.Lookup("SRC_SYS").NullOK()
 }

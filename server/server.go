@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/xml"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -37,39 +38,41 @@ func uploadHandler() http.Handler {
 			fmt.Printf("Request method : %s", r.Method)
 			fmt.Println()
 			body, _ := ioutil.ReadAll(r.Body)
-			//fmt.Println(string(body))
-			extractxmlroot(&body)
-			if validate() == nil {
-				parsedxml, err := xsdparser.Parse(&body)
-				if err != nil {
-					log.Fatal(err)
-				}
-				fmt.Println(parsedxml)
-				fmt.Fprint(w, "XML is valid. Processed")
-			} else {
+			doctype, err := extractAndValidate(&body)
+			if err != nil {
 				fmt.Fprint(w, "XML is invalid")
+			} else {
+				fmt.Println(doctype)
+				fmt.Fprint(w, "XML is valid. Processed")
 			}
 		}
-
 	}
 	return http.HandlerFunc(fn)
 }
 
-func extractxmlroot(xmlfile *[]byte) {
-	var v = xmlroot{}
+func extractAndValidate(xmlfile *[]byte) (string, error) {
+	rootElement := extractxmlroot(xmlfile)
+	Notfound := findDocFlow(rootElement)
+	fmt.Printf("Notfound ? %t\n", Notfound)
+	if Notfound {
+		return "", errors.New("Not found")
+	}
+	return validate(xmlfile)
+}
 
+func extractxmlroot(xmlfile *[]byte) string {
+	var v = xmlroot{}
 	err := xml.Unmarshal(*xmlfile, &v)
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	fmt.Println(v.XMLName.Local)
-
-	result := gomongo.DetermineDocFlow(v.XMLName.Local)
-
-	fmt.Println(result)
+	return string(v.XMLName.Local)
 }
 
-func validate() error {
-	return xsdparser.ValidateXML()
+func findDocFlow(xmlrootElement string) bool {
+	return gomongo.DetermineDocFlow(xmlrootElement)
+}
+
+func validate(xmlfile *[]byte) (string, error) {
+	return xsdparser.ValidateXML(xmlfile)
 }

@@ -1,0 +1,13 @@
+{
+    "dev": {
+        "host":"172.24.112.111",
+        "port": "27017",
+        "username": "qars1db3adm1",
+        "password": "wUch3BaV",
+        "param": "authSource=qars1db3"
+    },
+    "local": {
+        "host": "localhost",
+        "password": "27017" 
+    }
+}

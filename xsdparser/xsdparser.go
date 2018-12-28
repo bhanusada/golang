@@ -13,31 +13,7 @@ import (
 )
 
 var validate *validator.Validate
-var parsedxml = samplexsd.TxsdOrderCanonical{}
-
-//Parse XMLs to check for validity
-func Parse(xmlfile *[]byte) (string, error) {
-	var docTypeCode string
-	err := xml.Unmarshal(*xmlfile, &parsedxml)
-	docTypeCode = parsedxml.OrderDetails.OrderHeader.DocumentTypeCode.String()
-	return docTypeCode, err
-	//parsedxml.Walk()
-
-	/*	command := "v"
-
-		switch command {
-		case "g":
-			generateXSDTypes()
-			fmt.Println("Generating XSD types.")
-		case "v":
-			validateXML(xmlfile)
-			fmt.Println("Validating XSD.")
-		default:
-			fmt.Println("Inappropriate args.")
-			validateXML(xmlfile)
-		}
-	*/
-}
+var parsedxml samplexsd.TxsdOrderCanonical
 
 func generateXSDTypes() {
 	var (
@@ -52,21 +28,24 @@ func generateXSDTypes() {
 }
 
 //ValidateXML method to validate a given XML against specific XSD
-func ValidateXML() error {
-	/*xmlfile, err := os.Open("sample.xml")
+func ValidateXML(xmlfile *[]byte) (string, error) {
+
+	err := xml.Unmarshal(*xmlfile, &parsedxml)
+
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer xmlfile.Close() */
 
-	//byteValue, _ := ioutil.ReadAll(xmlfile)
 	validate = validator.New()
-	err := validate.Struct(parsedxml)
+
+	err = validate.Struct(parsedxml)
+
 	fmt.Printf("Transaction code : %s", parsedxml.TransactionCode.String())
+
 	if err != nil {
 		if _, ok := err.(*validator.InvalidValidationError); ok {
 			fmt.Println(err)
-			return err
+			return "", err
 		}
 		for _, err := range err.(validator.ValidationErrors) {
 			fmt.Println(err.Namespace())
@@ -81,11 +60,10 @@ func ValidateXML() error {
 			fmt.Println(err.Param())
 			fmt.Println()
 		}
-		return err
+		return "", err
 	}
-	//fmt.Println(v.XsdGoPkgHasElem_OrderDetails.OrderDetails.OrderHeader.XsdGoPkgHasElem_OrderNumber.OrderNumber)
-	//v.TransactionCode.Set("MODIFY")
-	//fmt.Println(v.TransactionCode)
-	fmt.Printf("%#v", parsedxml)
-	return nil
+
+	doctype := parsedxml.OrderDetails.OrderHeader.DocumentTypeCode.String()
+
+	return doctype, nil
 }
