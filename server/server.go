@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"encoding/xml"
 	"errors"
 	"fmt"
@@ -33,18 +34,25 @@ func uploadHandler() http.Handler {
 	fn := func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case "GET":
+			msg := make(map[string]interface{})
 			fmt.Printf("Request method : %s", r.Method)
+			msg["message"] = "Get request."
+			res, _ := json.Marshal(msg)
+			fmt.Fprint(w, string(res))
 		case "POST":
+			msg := make(map[string]interface{})
 			fmt.Printf("Request method : %s", r.Method)
 			fmt.Println()
 			body, _ := ioutil.ReadAll(r.Body)
 			doctype, err := extractAndValidate(&body)
 			if err != nil {
-				fmt.Fprint(w, "XML is invalid")
+				msg["message"] = "XML invalid."
 			} else {
 				fmt.Println(doctype)
-				fmt.Fprint(w, "XML is valid. Processed")
+				msg["message"] = "XML valid."
 			}
+			res, _ := json.Marshal(msg)
+			fmt.Fprint(w, string(res))
 		}
 	}
 	return http.HandlerFunc(fn)
