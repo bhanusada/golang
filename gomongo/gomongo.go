@@ -2,7 +2,9 @@ package gomongo
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"time"
 
@@ -12,21 +14,63 @@ import (
 	"github.com/mongodb/mongo-go-driver/mongo"
 )
 
+type Environment struct {
+	Profile string `json:"profile"`
+	Dev     Dev    `json:"dev"`
+	Local   Local  `json:"local"`
+}
+
+type Dev struct {
+	Host     string `json:"host"`
+	Port     string `json:"port"`
+	Username string `json:"username"`
+	Password string `json:"password"`
+	Param    string `json:"param"`
+}
+
+type Local struct {
+	Host string `json:"host"`
+	Port string `json:"port"`
+}
+
 var client *mongo.Client
 
-func init() {
-	/*file, err := os.Open("sample.xml")
-	if err != nil {
-		log.Fatal(err)
+func buildConnectionString() string {
+
+	uri := "mongodb://"
+
+	var j map[string]interface{}
+
+	envfile, _ := ioutil.ReadFile("../gomongo/environment.json")
+
+	json.Unmarshal(envfile, &j)
+
+	system := j["profile"].(string)
+
+	env := j[system].(map[string]interface{})
+
+	if env["username"] != "" && env["password"] != "" {
+		uri = uri + fmt.Sprintf("%s", env["username"]) + ":" + fmt.Sprintf("%s", env["password"]) + "@"
 	}
-	defer file.Close()
-	read, readerr := ioutil.ReadAll(file)
-	if readerr != nil {
-		log.Fatal(readerr)
-	}*/
+
+	uri = uri + fmt.Sprintf("%s", env["host"]) + ":" + fmt.Sprintf("%s", env["port"])
+
+	if env["param"] != "" {
+		uri = uri + "/?" + fmt.Sprintf("%s", env["param"])
+	}
+
+	fmt.Println(uri)
+
+	return uri
+}
+
+func init() {
+
+	uri := buildConnectionString()
+
 	var err error
-	client, err = mongo.NewClient("mongodb://qars1db3adm1:wUch3BaV@172.24.112.111:27017/?authSource=qars1db3")
-	//client, err = mongo.NewClient("mongodb://localhost:27017")
+
+	client, err = mongo.NewClient(uri)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -43,8 +87,8 @@ func init() {
 
 //DetermineDocFlow method lookup for available document types from Mongodb
 func DetermineDocFlow(doctype string) bool {
-	//collection := client.Database("mydb").Collection("DocTypes")
-	collection := client.Database("qars1db3").Collection("DocTypes")
+	collection := client.Database("mydb").Collection("DocTypes")
+	//collection := client.Database("qars1db3").Collection("DocTypes")
 	/*res, err := collection.InsertOne(context.Background(), bson.M{"data": read})
 	if err != nil {
 		log.Fatal(err)
