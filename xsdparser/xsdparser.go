@@ -5,10 +5,12 @@ import (
 	"fmt"
 	"log"
 
-	samplexsd "github.com/bhanu/xsdparser/go_Sample"
+	//samplexsd "github.com/bhanu/xsdparser/go_Sample"
 	validator "gopkg.in/go-playground/validator.v9"
 
-	//samplexsd "github.com/bhanu/xsdparser/go_order"
+	//orderxsd "github.com/bhanu/xsdparser/go_order"
+
+	samplexsd "github.com/bhanu/xsdparser/go_order"
 	xsd "github.com/metaleap/go-xsd"
 )
 
