@@ -2,20 +2,20 @@ package xsdtype
 
 //OrderCanonical root tag
 type OrderCanonical struct {
-	TransactionCode
-	CurrentTimestamp
+	TransactionCode  string `xml:"transactionCode" validate:"required"`
+	CurrentTimestamp string `xml:"currentTimestamp" validate:"required"`
 	OrderDetails
 }
 
 //TransactionCode add or modify
-type TransactionCode struct {
-	TransactionCode string `xml:"transactionCode" validate:"required"`
-}
+//type TransactionCode struct {
+//	TransactionCode string `xml:"transactionCode" validate:"required"`
+//}
 
 //CurrentTimestamp timestamp
-type CurrentTimestamp struct {
-	CurrentTimestamp string `xml:"currentTimestamp" validate:"required"`
-}
+//type CurrentTimestamp struct {
+//	CurrentTimestamp string `xml:"currentTimestamp" validate:"required"`
+//}
 
 //OrderDetails order details
 type OrderDetails struct {
