@@ -20,6 +20,10 @@ type OrderCanonical struct {
 //OrderDetails order details
 type OrderDetails struct {
 	OrderDetails GroupOrderDetails `xml:"orderDetails" validate:"required"`
+	//OrderHeader    GroupOrderHeader    `xml:"orderHeader"`
+	//OrderDiscounts GroupOrderDiscounts `xml:"discounts"`
+	//OrderLines     GroupOrderLines     `xml:"orderLines"`
+	//OrderSummary   GroupOrderSummary   `xml:"orderSummary"`
 }
 
 //GroupOrderDetails group of order details
@@ -33,9 +37,9 @@ type GroupOrderDetails struct {
 //GroupOrderHeader header details
 type GroupOrderHeader struct {
 	AccountOrderTypeCode          int16                    `xml:"accountOrderTypeCode"`
-	NewStoreFlag                  *bool                    `xml:"newStoreFlag" validate:"required"`
+	NewStoreFlag                  bool                     `xml:"newStoreFlag" validate:"required"`
 	SrcOrderRefID                 int32                    `xml:"srcOrderRefId"`
-	RelatedOrders                 []*GroupRelatedOrders    `xml:"relatedOrders"`
+	RelatedOrders                 []GroupRelatedOrders     `xml:"relatedOrders"`
 	ActionType                    string                   `xml:"actionType"`
 	TotalOrderRetailAmount        float32                  `xml:"totalOrderRetailAmount"`
 	OrderReasonCode               int16                    `xml:"orderReasonCode"`
@@ -45,8 +49,8 @@ type GroupOrderHeader struct {
 	TotalOrderWeightUomCode       int16                    `xml:"totalOrderWeightUomCode"`
 	ReceivingLocationNumber       string                   `xml:"receivingLocationNumber" validate:"required"`
 	OrderCancelTimestamp          string                   `xml:"orderCancelTimestamp"`
-	SpecialOrderFlag              *bool                    `xml:"specialOrderFlag" validate:"required"`
-	ConsignmentFlag               *bool                    `xml:"consignmentFlag" validate:"required"`
+	SpecialOrderFlag              bool                     `xml:"specialOrderFlag" validate:"required"`
+	ConsignmentFlag               bool                     `xml:"consignmentFlag" validate:"required"`
 	CurrencyTypeCode              string                   `xml:"currencyTypeCode"`
 	DistributionServiceTypeCode   int16                    `xml:"distributionServiceTypeCode" validate:"required"`
 	OmtOrderTypeCode              int16                    `xml:"omtOrderTypeCode"`
@@ -73,7 +77,7 @@ type GroupOrderHeader struct {
 	DocumentTypeCode              string                   `xml:"documentTypeCode"`
 	OrderNumber                   int32                    `xml:"orderNumber" validate:"required"`
 	OrderCreateTimestamp          string                   `xml:"orderCreateTimestamp" validate:"required"`
-	StoreExceptionRequestFlag     *bool                    `xml:"storeExceptionRequestFlag"`
+	StoreExceptionRequestFlag     bool                     `xml:"storeExceptionRequestFlag"`
 	EstimatedShipDate             string                   `xml:"estimatedShipDate"`
 	CancelEligibilityDate         string                   `xml:"cancelEligibilityDate"`
 	OrderHeaderVersionNumber      int16                    `xml:"orderHeaderVersionNumber" validate:"required"`
@@ -99,11 +103,11 @@ type GroupOrderHeader struct {
 	TransactionPurposeCode        string                   `xml:"transactionPurposeCode" validate:"required"`
 	ShippingLocationNumber        string                   `xml:"shippingLocationNumber"`
 	LastUpdatedTimestamp          string                   `xml:"lastUpdatedTimestamp"`
-	HeaderUpdatedFlag             *bool                    `xml:"headerUpdatedFlag" validate:"required"`
+	HeaderUpdatedFlag             bool                     `xml:"headerUpdatedFlag" validate:"required"`
 	FreightOnboardCode            string                   `xml:"freightOnboardCode"`
-	PeggedOrderFlag               *bool                    `xml:"peggedOrderFlag" validate:"required"`
-	VendorCertifiedFlag           *bool                    `xml:"vendorCertifiedFlag"`
-	PostReceiptFlag               *bool                    `xml:"postReceiptFlag"`
+	PeggedOrderFlag               bool                     `xml:"peggedOrderFlag" validate:"required"`
+	VendorCertifiedFlag           bool                     `xml:"vendorCertifiedFlag"`
+	PostReceiptFlag               bool                     `xml:"postReceiptFlag"`
 }
 
 //GroupRelatedOrders related details
@@ -171,7 +175,7 @@ type GroupOrderLine struct {
 	VendorPartNumber                string                     `xml:"vendorPartNumber"`
 	VisibilityFeedReceivedTimestamp string                     `xml:"visibilityFeedReceivedTimestamp"`
 	FirstReceiptTimestamp           string                     `xml:"firstReceiptTimestamp"`
-	LineUpdatedFlag                 *bool                      `xml:"lineUpdatedFlag" validate:"required"`
+	LineUpdatedFlag                 bool                       `xml:"lineUpdatedFlag" validate:"required"`
 	CreateSystemUserID              string                     `xml:"createSystemUserId"`
 	UnitCostAmount                  string                     `xml:"unitCostAmount" validate:"required"`
 	SkuNumber                       int32                      `xml:"skuNumber" validate:"required"`
@@ -189,7 +193,7 @@ type GroupOrderLine struct {
 	ReceivedQuantity                float64                    `xml:"receivedQuantity" validate:"required"`
 	BuyPackVolume                   float64                    `xml:"buyPackVolume"`
 	IsPrepackSku                    string                     `xml:"isPrepackSku"`
-	CostOverrideFlag                *bool                      `xml:"costOverrideFlag"`
+	CostOverrideFlag                bool                       `xml:"costOverrideFlag"`
 	UnitRetailAmount                string                     `xml:"unitRetailAmount" validate:"required"`
 	SkuShortDescription             string                     `xml:"skuShortDescription" validate:"required"`
 	OrderLineStatusCode             int16                      `xml:"orderLineStatusCode"`
