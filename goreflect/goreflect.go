@@ -56,33 +56,41 @@ func filtertags(xsd interface{}) {
 		switch t.Field(i).Kind().String() {
 		case "string":
 			if reflect.TypeOf(xsd).Field(i).Tag.Get("validate") == "required" {
-				fmt.Printf("Field %s is valid %t and value is %s\n", reflect.TypeOf(xsd).Field(i).Name, f1.IsValid(), f1)
-			}
-			field := reflect.ValueOf(xsd).FieldByName(reflect.TypeOf(xsd).Field(i).Name)
-			if !field.IsValid() {
-				fmt.Println("Does not exist ")
+				if f1.Interface() == reflect.Zero(f1.Type()).Interface() {
+					fmt.Printf("Field %s is missing.\n", reflect.TypeOf(xsd).Field(i).Name)
+				}
 			}
 		case "int", "int16", "int32", "int64":
 			if reflect.TypeOf(xsd).Field(i).Tag.Get("validate") == "required" {
-				fmt.Println(reflect.TypeOf(xsd).Field(i).Name)
+				if f1.Interface() == reflect.Zero(f1.Type()).Interface() {
+					fmt.Printf("Field %s is missing.\n", reflect.TypeOf(xsd).Field(i).Name)
+				}
 			}
 		case "float32", "float64":
 			if reflect.TypeOf(xsd).Field(i).Tag.Get("validate") == "required" {
-				fmt.Println(reflect.TypeOf(xsd).Field(i).Name)
+				if f1.Interface() == reflect.Zero(f1.Type()).Interface() {
+					fmt.Printf("Field %s is missing.\n", reflect.TypeOf(xsd).Field(i).Name)
+				}
 			}
 		case "bool":
 			if reflect.TypeOf(xsd).Field(i).Tag.Get("validate") == "required" {
-				fmt.Println(reflect.TypeOf(xsd).Field(i).Name)
+				if f1.Bool() {
+					fmt.Printf("bool %s is empty \n.", reflect.TypeOf(xsd).Field(i).Name)
+				}
+			}
+		case "ptr":
+			fmt.Println("pointer")
+			if f1.IsNil() {
+				fmt.Printf("pointer %s is empty \n.", reflect.TypeOf(xsd).Field(i).Name)
 			}
 		case "slice":
 			if reflect.TypeOf(xsd).Field(i).Tag.Get("validate") == "required" {
-				fmt.Println(reflect.TypeOf(xsd).Field(i).Name)
+				if f1.IsNil() {
+					fmt.Printf("Slice %s is empty \n.", reflect.TypeOf(xsd).Field(i).Name)
+				}
 			}
 			slicestruct(f1.Interface())
 		case "struct":
-			if reflect.TypeOf(xsd).Field(i).Tag.Get("validate") == "required" {
-				fmt.Println(reflect.TypeOf(xsd).Field(i).Name)
-			}
 			filtertags(f1.Interface())
 		default:
 			fmt.Println("Others")
