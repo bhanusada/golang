@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <orderCanonical>
-   <transactionCode>ADD</transactionCode>
+   <transactionCode></transactionCode>
    <currentTimestamp>2018-12-17T21:40:05</currentTimestamp>
    <orderDetails>
       <orderHeader>
@@ -30,7 +30,7 @@
          <orderStatusCode>2</orderStatusCode>
          <orderOpenTimestamp>2018-12-18T04:40:05</orderOpenTimestamp>
          <orderOpenSystemUserId>PPO_SWEEP</orderOpenSystemUserId>
-         <newStoreFlag>false</newStoreFlag>
+         <newStoreFlag></newStoreFlag>
          <consignmentFlag>false</consignmentFlag>
          <commentText>New one world SKU</commentText>
          <srcOrderRefId>2364616</srcOrderRefId>

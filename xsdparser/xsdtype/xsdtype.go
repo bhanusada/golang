@@ -1,9 +1,12 @@
 package xsdtype
 
+import "encoding/xml"
+
 //OrderCanonical root tag
 type OrderCanonical struct {
-	TransactionCode  string `xml:"transactionCode" validate:"required"`
-	CurrentTimestamp string `xml:"currentTimestamp" validate:"required"`
+	XMLName          xml.Name `xml:"orderCanonical"`
+	TransactionCode  string   `xml:"transactionCode" json:"transactionCode,omitempty"`
+	CurrentTimestamp string   `xml:"currentTimestamp" validate:"required"`
 	OrderDetails
 }
 
@@ -19,6 +22,7 @@ type OrderCanonical struct {
 
 //OrderDetails order details
 type OrderDetails struct {
+	XMLName      xml.Name          `xml:"orderDetails"`
 	OrderDetails GroupOrderDetails `xml:"orderDetails" validate:"required"`
 	//OrderHeader    GroupOrderHeader    `xml:"orderHeader"`
 	//OrderDiscounts GroupOrderDiscounts `xml:"discounts"`
@@ -36,8 +40,9 @@ type GroupOrderDetails struct {
 
 //GroupOrderHeader header details
 type GroupOrderHeader struct {
+	XMLName                       xml.Name                 `xml:"orderHeader"`
 	AccountOrderTypeCode          int16                    `xml:"accountOrderTypeCode"`
-	NewStoreFlag                  bool                     `xml:"newStoreFlag" validate:"required"`
+	NewStoreFlag                  bool                     `xml:"newStoreFlag,omitempty" validate:"required"`
 	SrcOrderRefID                 int32                    `xml:"srcOrderRefId"`
 	RelatedOrders                 []GroupRelatedOrders     `xml:"relatedOrders"`
 	ActionType                    string                   `xml:"actionType"`

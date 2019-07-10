@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"encoding/xml"
 	"fmt"
 	"io/ioutil"
@@ -22,7 +23,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	//fmt.Println(xsd.TransactionCode)
+	fmt.Println(xsd.OrderDetails.OrderDetails.OrderHeader.NewStoreFlag)
 
 	/*
 
@@ -37,8 +38,8 @@ func main() {
 		fmt.Println(f.Tag.Get("validate"))
 	*/
 	//xsd1 := map[string]interface{}(xsd)
-	//xsdjson, _ := json.Marshal(&xsd)
-	//fmt.Println(string(xsdjson))
+	xsdjson, _ := json.Marshal(&xsd)
+	fmt.Println(string(xsdjson))
 	filtertags(xsd)
 
 }
@@ -80,6 +81,8 @@ func filtertags(xsd interface{}) {
 			}
 		case "ptr":
 			fmt.Println("pointer")
+			fmt.Println(reflect.ValueOf(f1.Interface()).Elem())
+			fmt.Println(reflect.TypeOf(xsd).Field(i).Name)
 			if f1.IsNil() {
 				fmt.Printf("pointer %s is empty \n.", reflect.TypeOf(xsd).Field(i).Name)
 			}

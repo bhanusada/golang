@@ -10,12 +10,12 @@ import (
 
 	//orderxsd "github.com/bhanu/xsdparser/go_order"
 
-	samplexsd "github.com/bhanu/xsdparser/go_order"
+	samplexsd "github.com/bhanu/xsdparser/xsdtype"
 	xsd "github.com/metaleap/go-xsd"
 )
 
 var validate *validator.Validate
-var parsedxml samplexsd.TxsdOrderCanonical
+var parsedxml samplexsd.OrderCanonical
 
 func generateXSDTypes() {
 	var (
@@ -42,7 +42,7 @@ func ValidateXML(xmlfile *[]byte) (string, error) {
 
 	err = validate.Struct(parsedxml)
 
-	fmt.Printf("Transaction code : %s", parsedxml.TransactionCode.String())
+	fmt.Printf("Transaction code : %s", parsedxml.TransactionCode.TransactionCode)
 
 	if err != nil {
 		if _, ok := err.(*validator.InvalidValidationError); ok {
@@ -65,7 +65,7 @@ func ValidateXML(xmlfile *[]byte) (string, error) {
 		return "", err
 	}
 
-	doctype := parsedxml.OrderDetails.OrderHeader.DocumentTypeCode.String()
+	doctype := parsedxml.OrderDetails.OrderDetails.OrderHeader.DocumentTypeCode
 
 	return doctype, nil
 }

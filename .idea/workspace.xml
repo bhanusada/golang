@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a36f411-15ac-4f46-ad71-b71bba07a9a2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goreflect/goreflect.go" beforeDir="false" afterPath="$PROJECT_DIR$/goreflect/goreflect.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readfile/readfile.go" beforeDir="false" afterPath="$PROJECT_DIR$/readfile/readfile.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xsdparser/sample.xml" beforeDir="false" afterPath="$PROJECT_DIR$/xsdparser/sample.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xsdparser/xsdparser.go" beforeDir="false" afterPath="$PROJECT_DIR$/xsdparser/xsdparser.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xsdparser/xsdtype/xsdtype.go" beforeDir="false" afterPath="$PROJECT_DIR$/xsdparser/xsdtype/xsdtype.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +39,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/xmlparser/xmlparser.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-136">
+            <state relative-caret-position="221">
               <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
             </state>
           </provider>
@@ -43,8 +48,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/server.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+            <state relative-caret-position="425">
+              <caret line="25" column="6" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
+              <folding>
+                <element signature="e#14#195#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -52,8 +60,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/xsdparser/xsdparser.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="918">
-              <caret line="64" selection-start-line="64" selection-end-line="64" />
+            <state relative-caret-position="425">
+              <caret line="25" column="63" selection-start-line="25" selection-start-column="63" selection-end-line="25" selection-end-column="63" />
+              <folding>
+                <element signature="e#19#295#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -118,17 +129,13 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="bhanu" type="b2602c69:ProjectViewProjectNode" />
               <item name="bhanu" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bhanu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bhanu" type="462c0819:PsiDirectoryNode" />
-              <item name="readfile" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="bhanu" type="b2602c69:ProjectViewProjectNode" />
@@ -145,17 +152,36 @@
               <item name="bhanu" type="462c0819:PsiDirectoryNode" />
               <item name="xsdparser" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="bhanu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bhanu" type="462c0819:PsiDirectoryNode" />
+              <item name="xsdparser" type="462c0819:PsiDirectoryNode" />
+              <item name="go_order" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bhanu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bhanu" type="462c0819:PsiDirectoryNode" />
+              <item name="xsdparser" type="462c0819:PsiDirectoryNode" />
+              <item name="go_Sample" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bhanu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bhanu" type="462c0819:PsiDirectoryNode" />
+              <item name="xsdparser" type="462c0819:PsiDirectoryNode" />
+              <item name="xsdtype" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultGoTemplateProperty" value="Go Application" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -197,7 +223,7 @@
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1931964" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20051414" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -210,7 +236,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.19354838" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.19246298" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="REST Client" order="12" weight="0.3822342" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.32974428" />
@@ -224,20 +250,21 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/rest-api.http">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/ide/ide-scripting.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/rest-api.http" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/ide/ide-scripting.js" />
     <entry file="file://$PROJECT_DIR$/readfile/readfile.go">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/xmlparser/sample.xsd" />
+    <entry file="file://$PROJECT_DIR$/xsdparser/go_order/go_order.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-119" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/xsdparser/go_Sample/go_Sample.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="311" lean-forward="true" selection-start-line="311" selection-end-line="311" />
+        <state relative-caret-position="417">
+          <caret line="311" selection-start-line="311" selection-end-line="311" />
         </state>
       </provider>
     </entry>
@@ -255,10 +282,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/xsdparser/xsdparser.go">
+    <entry file="file://$PROJECT_DIR$/xmlparser/xmlparser.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="64" selection-start-line="64" selection-end-line="64" />
+        <state relative-caret-position="221">
+          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -276,17 +303,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/xmlparser/xmlparser.go">
+    <entry file="file://$PROJECT_DIR$/xsdparser/xsdparser.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-136">
-          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+        <state relative-caret-position="425">
+          <caret line="25" column="63" selection-start-line="25" selection-start-column="63" selection-end-line="25" selection-end-column="63" />
+          <folding>
+            <element signature="e#19#295#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/server.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+        <state relative-caret-position="425">
+          <caret line="25" column="6" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
+          <folding>
+            <element signature="e#14#195#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
