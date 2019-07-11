@@ -3,33 +3,26 @@ package main
 import (
 	"fmt"
 	"math"
-	"strings"
 
 	"rsc.io/pdf"
 )
 
 func main() {
-	r, _ := pdf.Open("../template/Interline856spec.pdf")
-	p := r.Page(8)
+	r, _ := pdf.Open("./856_HDPRO_ 4060 [04022019].pdf")
+	p := r.Page(7)
 	//fmt.Println(r.NumPage())
 	//fmt.Printf("%v", p.Content())
 	//fmt.Println(r.Trailer().Key("Root").String())
 	//fmt.Println(p.V.TextFromUTF16())
 
-	for _, v := range p.Content().Text {
-		fmt.Printf("%#v", v)
-	}
+	//for _, v := range p.Content().Text {
+	//	fmt.Printf("%#v", v)
+	//}
 	words := findWords(p.Content().Text)
-
 	for _, v := range words {
-		fmt.Println(v.S)
+		fmt.Println(v)
 	}
 }
-{Font:"Arial-BoldItalicMT", FontSize:8.9858405, X:453.10301349950015, Y:354.614715, W:7.9884122045, S:"m"}
-{Font:"Arial-BoldItalicMT", FontSize:8.9858405, X:463.81413537550014, Y:354.614715, W:4.996127318, S:"a"}
-{Font:"Arial-BoldItalicMT", FontSize:8.9858405, X:468.81026269350014, Y:354.614715, W:2.9922848865000002, S:"t"}
-{Font:"Arial-BoldItalicMT", FontSize:8.9858405, X:474.5252572515002, Y:354.614715, W:4.996127318, S:"8"}
-
 
 func findWords(chars []pdf.Text) (words []pdf.Text) {
 	// Sort by Y coordinate and normalize.
@@ -50,7 +43,7 @@ func findWords(chars []pdf.Text) (words []pdf.Text) {
 	//fmt.Println(chars)
 	// Loop over chars.
 	for i := 0; i < len(chars); {
-		fmt.Printf("%#v\n", chars[i])
+		// fmt.Printf("%#v\n", chars[i])
 		// Find all chars on line.
 		j := i + 1
 		for j < len(chars) && chars[j].Y == chars[i].Y {
@@ -61,9 +54,9 @@ func findWords(chars []pdf.Text) (words []pdf.Text) {
 		for k := i; k < j; {
 			ck := &chars[k]
 			s := ck.S
-			end = ck.X + ck.W 500
-			charSpace := ck.FontSize / 6 1.5
-			wordSpace := ck.FontSize * 2 / 3 6
+			end = ck.X + ck.W
+			charSpace := ck.FontSize / 6
+			wordSpace := ck.FontSize * 2 / 3
 			l := k + 1
 			for l < j {
 				// Grow word.
@@ -83,23 +76,11 @@ func findWords(chars []pdf.Text) (words []pdf.Text) {
 				}
 				break
 			}
-			f := ck.Font
-			f = strings.TrimSuffix(f, ",Italic")
-			f = strings.TrimSuffix(f, "-Italic")
-			words = append(words, pdf.Text{f, ck.FontSize, ck.X, ck.Y, end - ck.X, s})
+			words = append(words, pdf.Text{Font: ck.Font, FontSize: ck.FontSize, X: ck.X, Y: ck.Y, W: end - ck.X, S: s})
 			k = l
 		}
 		i = j
 	}
 	//fmt.Println(words)
 	return words
-}
-
-func sameFont(f1, f2 string) bool {
-	//f1 = strings.TrimSuffix(f1, ",Italic")
-	//f1 = strings.TrimSuffix(f1, "-Italic")
-	//f2 = strings.TrimSuffix(f1, ",Italic")
-	//f2 = strings.TrimSuffix(f1, "-Italic")
-	//return strings.TrimSuffix(f1, ",Italic") == strings.TrimSuffix(f2, ",Italic") || f1 == "Symbol" || f2 == "Symbol" || f1 == "TimesNewRoman" || f2 == "TimesNewRoman"
-	return f1 == f2
 }
