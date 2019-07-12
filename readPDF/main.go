@@ -8,11 +8,22 @@ import (
 	"rsc.io/pdf"
 )
 
+type parameters struct {
+	name     string
+	id       int
+	desc     string
+	required string
+	datatype string
+	minmax   string
+}
+
 func main() {
 	r, _ := pdf.Open("./856_HDPRO_ 4060 [04022019].pdf")
 	segment := ""
 	field := ""
 	num := 0
+	var fields []map[string]string
+	//var fields []interface{}
 	for i := 4; i < r.NumPage(); i++ {
 		p := r.Page(i)
 		words := findWords(p.Content().Text)
@@ -30,6 +41,9 @@ func main() {
 						fmt.Println(v.S)
 						field = v.S
 						num = 0
+						//params = map[string]string{}
+						fmt.Println(len(fields))
+						fields[len(fields)] = map[string]string{}
 						continue
 						//segment = ""
 					}
@@ -37,13 +51,22 @@ func main() {
 			}
 			if len(field) > 0 && num < 10 {
 				num++
+				temp := fields[len(fields)]
+				for k, _ := range temp {
+					_, ok := temp[k]
+					if !ok {
+						fields[len(fields)][k] = v.S
+						break
+					}
+				}
+				fields = append(fields, temp)
 				if strings.Contains(v.S, "Description:") {
 					num = 10
 					continue
 				}
-				fmt.Println(v.S)
+				//fmt.Println(v.S)
 			}
-			//fmt.Println(v)
+			fmt.Printf("%V", fields)
 		}
 	}
 
