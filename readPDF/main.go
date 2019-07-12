@@ -3,13 +3,50 @@ package main
 import (
 	"fmt"
 	"math"
+	"strings"
 
 	"rsc.io/pdf"
 )
 
 func main() {
 	r, _ := pdf.Open("./856_HDPRO_ 4060 [04022019].pdf")
-	p := r.Page(7)
+	segment := ""
+	field := ""
+	num := 0
+	for i := 4; i < r.NumPage(); i++ {
+		p := r.Page(i)
+		words := findWords(p.Content().Text)
+
+		for _, v := range words {
+			//fmt.Println(v)
+			if v.FontSize > 18 && len(v.S) < 4 {
+				segment = v.S
+				fmt.Println(segment)
+				continue
+			}
+			if len(segment) > 0 {
+				if len(v.S) >= len(segment) {
+					if v.S[:len(segment)] == segment {
+						fmt.Println(v.S)
+						field = v.S
+						num = 0
+						continue
+						//segment = ""
+					}
+				}
+			}
+			if len(field) > 0 && num < 10 {
+				num++
+				if strings.Contains(v.S, "Description:") {
+					num = 10
+					continue
+				}
+				fmt.Println(v.S)
+			}
+			//fmt.Println(v)
+		}
+	}
+
 	//fmt.Println(r.NumPage())
 	//fmt.Printf("%v", p.Content())
 	//fmt.Println(r.Trailer().Key("Root").String())
@@ -18,10 +55,7 @@ func main() {
 	//for _, v := range p.Content().Text {
 	//	fmt.Printf("%#v", v)
 	//}
-	words := findWords(p.Content().Text)
-	for _, v := range words {
-		fmt.Println(v)
-	}
+
 }
 
 func findWords(chars []pdf.Text) (words []pdf.Text) {
