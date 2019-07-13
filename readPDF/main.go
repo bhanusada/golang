@@ -23,62 +23,49 @@ func main() {
 	field := ""
 	num := 0
 	var fields []map[string]string
-	//var fields []interface{}
+	var temp map[string]string
+	//var segments []map[string]interface{}
+	keys := []string{"id", "desc", "required", "datatype", "minmax"}
 	for i := 4; i < r.NumPage(); i++ {
 		p := r.Page(i)
 		words := findWords(p.Content().Text)
-
 		for _, v := range words {
-			//fmt.Println(v)
 			if v.FontSize > 18 && len(v.S) < 4 {
 				segment = v.S
-				fmt.Println(segment)
+				//segments = append(segments, map[string]interface{}{"name": v.S, "list": []map[string]string{}})
 				continue
 			}
 			if len(segment) > 0 {
 				if len(v.S) >= len(segment) {
 					if v.S[:len(segment)] == segment {
-						fmt.Println(v.S)
 						field = v.S
 						num = 0
-						//params = map[string]string{}
-						fmt.Println(len(fields))
-						fields[len(fields)] = map[string]string{}
+						fields = append(fields, map[string]string{})
+						fields[len(fields)-1]["name"] = v.S
 						continue
-						//segment = ""
 					}
 				}
 			}
 			if len(field) > 0 && num < 10 {
 				num++
-				temp := fields[len(fields)]
-				for k, _ := range temp {
-					_, ok := temp[k]
+				temp = fields[len(fields)-1]
+				for _, val := range keys {
+					_, ok := temp[val]
 					if !ok {
-						fields[len(fields)][k] = v.S
+						fields[len(fields)-1][val] = v.S
 						break
 					}
 				}
-				fields = append(fields, temp)
 				if strings.Contains(v.S, "Description:") {
 					num = 10
 					continue
 				}
-				//fmt.Println(v.S)
 			}
-			fmt.Printf("%V", fields)
 		}
 	}
-
-	//fmt.Println(r.NumPage())
-	//fmt.Printf("%v", p.Content())
-	//fmt.Println(r.Trailer().Key("Root").String())
-	//fmt.Println(p.V.TextFromUTF16())
-
-	//for _, v := range p.Content().Text {
-	//	fmt.Printf("%#v", v)
-	//}
-
+	for _, val1 := range fields {
+		fmt.Println(val1)
+	}
 }
 
 func findWords(chars []pdf.Text) (words []pdf.Text) {
