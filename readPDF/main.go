@@ -8,13 +8,33 @@ import (
 	"rsc.io/pdf"
 )
 
-type parameters struct {
+type segmentStruct struct {
+	name string
+	list []fieldStruct
+}
+type fieldStruct struct {
 	name     string
-	id       int
+	id       string
 	desc     string
-	required string
+	req      string
 	datatype string
 	minmax   string
+}
+
+func (f *fieldStruct) setid(id string) {
+	f.id = id
+}
+func (f *fieldStruct) setdesc(desc string) {
+	f.desc = desc
+}
+func (f *fieldStruct) setreq(req string) {
+	f.req = req
+}
+func (f *fieldStruct) setdatatype(datatype string) {
+	f.datatype = datatype
+}
+func (f *fieldStruct) setminmax(minmax string) {
+	f.minmax = minmax
 }
 
 func main() {
@@ -22,16 +42,23 @@ func main() {
 	segment := ""
 	field := ""
 	num := 0
-	var fields []map[string]string
-	var temp map[string]string
+	var edi []segmentStruct
+	//var fields []map[string]string
+	//var temp fieldStruct
+	var seg segmentStruct
+	var fl *fieldStruct
 	//var segments []map[string]interface{}
-	keys := []string{"id", "desc", "required", "datatype", "minmax"}
+	//keys := []string{"id", "desc", "required", "datatype", "minmax"}
 	for i := 4; i < r.NumPage(); i++ {
 		p := r.Page(i)
 		words := findWords(p.Content().Text)
 		for _, v := range words {
 			if v.FontSize > 18 && len(v.S) < 4 {
 				segment = v.S
+				seg = segmentStruct{}
+				seg.name = v.S
+
+				//seg.list = []fieldStruct{}
 				//segments = append(segments, map[string]interface{}{"name": v.S, "list": []map[string]string{}})
 				continue
 			}
@@ -40,22 +67,46 @@ func main() {
 					if v.S[:len(segment)] == segment {
 						field = v.S
 						num = 0
-						fields = append(fields, map[string]string{})
-						fields[len(fields)-1]["name"] = v.S
+						seg.list = append(seg.list, fieldStruct{})
+						//fields = append(fields, map[string]string{})
+						seg.list[len(seg.list)-1].name = v.S
+						fl = &seg.list[len(seg.list)-1]
+						edi = append(edi, seg)
 						continue
 					}
 				}
 			}
 			if len(field) > 0 && num < 10 {
 				num++
-				temp = fields[len(fields)-1]
-				for _, val := range keys {
+				//temp = seg.list[len(seg.list)-1]
+				if num == 1 {
+					fl.setid(v.S)
+				}
+				if num == 2 {
+					fl.setdesc(v.S)
+				}
+				if num == 3 {
+					fl.setreq(v.S)
+				}
+				if num == 4 {
+					fl.setdatatype(v.S)
+				}
+				if num == 5 {
+					fl.setminmax(v.S)
+				}
+				/*for _, val := range keys {
 					_, ok := temp[val]
 					if !ok {
-						fields[len(fields)-1][val] = v.S
+						seg.list[len(seg.list)-1][val] = v.S
 						break
 					}
-				}
+				}*/
+				/*x := reflect.ValueOf(seg.list[len(seg.list)-1])
+				for i := 1; i < x.NumField(); i++ {
+					if x.Field(i).Interface() == "" {
+						x.Elem().FieldByIndex(i).SetString()
+					}
+				}*/
 				if strings.Contains(v.S, "Description:") {
 					num = 10
 					continue
@@ -63,7 +114,7 @@ func main() {
 			}
 		}
 	}
-	for _, val1 := range fields {
+	for _, val1 := range edi {
 		fmt.Println(val1)
 	}
 }
