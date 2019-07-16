@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"math"
 	"strings"
@@ -9,32 +10,32 @@ import (
 )
 
 type segmentStruct struct {
-	name string
-	list []fieldStruct
+	Name string        `json:"name"`
+	List []fieldStruct `json:"list"`
 }
 type fieldStruct struct {
-	name     string
-	id       string
-	desc     string
-	req      string
-	datatype string
-	minmax   string
+	Name     string `json:"name"`
+	Id       string `json:"id"`
+	Desc     string `json:"desc"`
+	Req      string `json:"req"`
+	Datatype string `json:"datatype"`
+	Minmax   string `json:"minmax"`
 }
 
 func (f *fieldStruct) setid(id string) {
-	f.id = id
+	f.Id = id
 }
 func (f *fieldStruct) setdesc(desc string) {
-	f.desc = desc
+	f.Desc = desc
 }
 func (f *fieldStruct) setreq(req string) {
-	f.req = req
+	f.Req = req
 }
 func (f *fieldStruct) setdatatype(datatype string) {
-	f.datatype = datatype
+	f.Datatype = datatype
 }
 func (f *fieldStruct) setminmax(minmax string) {
-	f.minmax = minmax
+	f.Minmax = minmax
 }
 
 func main() {
@@ -43,23 +44,16 @@ func main() {
 	field := ""
 	num := 0
 	var edi []segmentStruct
-	//var fields []map[string]string
-	//var temp fieldStruct
-	var seg segmentStruct
+	var seg *segmentStruct
 	var fl *fieldStruct
-	//var segments []map[string]interface{}
-	//keys := []string{"id", "desc", "required", "datatype", "minmax"}
 	for i := 4; i < r.NumPage(); i++ {
 		p := r.Page(i)
 		words := findWords(p.Content().Text)
 		for _, v := range words {
 			if v.FontSize > 18 && len(v.S) < 4 {
 				segment = v.S
-				seg = segmentStruct{}
-				seg.name = v.S
-
-				//seg.list = []fieldStruct{}
-				//segments = append(segments, map[string]interface{}{"name": v.S, "list": []map[string]string{}})
+				edi = append(edi, segmentStruct{Name: v.S})
+				seg = &edi[len(edi)-1]
 				continue
 			}
 			if len(segment) > 0 {
@@ -67,18 +61,15 @@ func main() {
 					if v.S[:len(segment)] == segment {
 						field = v.S
 						num = 0
-						seg.list = append(seg.list, fieldStruct{})
-						//fields = append(fields, map[string]string{})
-						seg.list[len(seg.list)-1].name = v.S
-						fl = &seg.list[len(seg.list)-1]
-						edi = append(edi, seg)
+						seg.List = append(seg.List, fieldStruct{})
+						seg.List[len(seg.List)-1].Name = v.S
+						fl = &seg.List[len(seg.List)-1]
 						continue
 					}
 				}
 			}
 			if len(field) > 0 && num < 10 {
 				num++
-				//temp = seg.list[len(seg.list)-1]
 				if num == 1 {
 					fl.setid(v.S)
 				}
@@ -94,19 +85,6 @@ func main() {
 				if num == 5 {
 					fl.setminmax(v.S)
 				}
-				/*for _, val := range keys {
-					_, ok := temp[val]
-					if !ok {
-						seg.list[len(seg.list)-1][val] = v.S
-						break
-					}
-				}*/
-				/*x := reflect.ValueOf(seg.list[len(seg.list)-1])
-				for i := 1; i < x.NumField(); i++ {
-					if x.Field(i).Interface() == "" {
-						x.Elem().FieldByIndex(i).SetString()
-					}
-				}*/
 				if strings.Contains(v.S, "Description:") {
 					num = 10
 					continue
@@ -114,9 +92,16 @@ func main() {
 			}
 		}
 	}
-	for _, val1 := range edi {
-		fmt.Println(val1)
+	edijson, err := json.Marshal(edi)
+	if err != nil {
+		fmt.Println("error")
+		fmt.Println(err)
+	} else {
+		fmt.Println(string(edijson))
 	}
+	//for _, val1 := range edi {
+	//	fmt.Println(val1)
+	//}
 }
 
 func findWords(chars []pdf.Text) (words []pdf.Text) {
