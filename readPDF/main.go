@@ -2,7 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
+	"io/ioutil"
 	"math"
 	"strings"
 
@@ -11,6 +11,10 @@ import (
 
 type segmentStruct struct {
 	Name string        `json:"name"`
+	Desc string        `json:"desc"`
+	Max  string        `json:"max"`
+	Loop string        `json:"loop"`
+	Req  string        `json:"req"`
 	List []fieldStruct `json:"list"`
 }
 type fieldStruct struct {
@@ -50,13 +54,35 @@ func main() {
 		p := r.Page(i)
 		words := findWords(p.Content().Text)
 		for _, v := range words {
-			if v.FontSize > 18 && len(v.S) < 4 {
+			//fmt.Println(v)
+			if v.FontSize > 20 && len(v.S) < 4 {
 				segment = v.S
 				edi = append(edi, segmentStruct{Name: v.S})
 				seg = &edi[len(edi)-1]
 				continue
 			}
+			if v.FontSize > 18 {
+				seg.Desc = seg.Desc + " " + v.S
+				seg.Desc = strings.TrimSpace(seg.Desc)
+				continue
+			}
 			if len(segment) > 0 {
+				if strings.HasPrefix(v.S, "Max: ") {
+					seg.Max = v.S[5:]
+					continue
+				}
+				if strings.HasPrefix(v.S, "Loop: ") {
+					seg.Loop = v.S[6:]
+					continue
+				}
+				if strings.Contains(v.S, "Optional") {
+					seg.Req = "N/A"
+					continue
+				}
+				if strings.Contains(v.S, "Mandatory") {
+					seg.Req = "M"
+					continue
+				}
 				if len(v.S) >= len(segment) {
 					if v.S[:len(segment)] == segment {
 						field = v.S
@@ -70,19 +96,16 @@ func main() {
 			}
 			if len(field) > 0 && num < 10 {
 				num++
-				if num == 1 {
+				switch num {
+				case 1:
 					fl.setid(v.S)
-				}
-				if num == 2 {
+				case 2:
 					fl.setdesc(v.S)
-				}
-				if num == 3 {
+				case 3:
 					fl.setreq(v.S)
-				}
-				if num == 4 {
+				case 4:
 					fl.setdatatype(v.S)
-				}
-				if num == 5 {
+				case 5:
 					fl.setminmax(v.S)
 				}
 				if strings.Contains(v.S, "Description:") {
@@ -92,13 +115,15 @@ func main() {
 			}
 		}
 	}
-	edijson, err := json.Marshal(edi)
-	if err != nil {
-		fmt.Println("error")
-		fmt.Println(err)
-	} else {
-		fmt.Println(string(edijson))
-	}
+	//edijson, err := json.Marshal(edi)
+	//if err != nil {
+	//	fmt.Println("error")
+	//	fmt.Println(err)
+	//} else {
+	//fmt.Println(string(edijson))
+	file, _ := json.MarshalIndent(edi, "", " ")
+	_ = ioutil.WriteFile("edi.json", file, 0644)
+	//}
 	//for _, val1 := range edi {
 	//	fmt.Println(val1)
 	//}
