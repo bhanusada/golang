@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"io/ioutil"
 	"math"
@@ -54,7 +55,6 @@ func main() {
 		p := r.Page(i)
 		words := findWords(p.Content().Text)
 		for _, v := range words {
-			//fmt.Println(v)
 			if v.FontSize > 20 && len(v.S) < 4 {
 				segment = v.S
 				edi = append(edi, segmentStruct{Name: v.S})
@@ -115,18 +115,12 @@ func main() {
 			}
 		}
 	}
-	//edijson, err := json.Marshal(edi)
-	//if err != nil {
-	//	fmt.Println("error")
-	//	fmt.Println(err)
-	//} else {
-	//fmt.Println(string(edijson))
-	file, _ := json.MarshalIndent(edi, "", " ")
-	_ = ioutil.WriteFile("edi.json", file, 0644)
-	//}
-	//for _, val1 := range edi {
-	//	fmt.Println(val1)
-	//}
+	buf := new(bytes.Buffer)
+	enc := json.NewEncoder(buf)
+	enc.SetEscapeHTML(false)
+	enc.SetIndent("", " ")
+	_ = enc.Encode(edi)
+	_ = ioutil.WriteFile("edi.json", buf.Bytes(), 0644)
 }
 
 func findWords(chars []pdf.Text) (words []pdf.Text) {
