@@ -10,6 +10,7 @@ func handler(res http.ResponseWriter, req *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/", handler)
+	http.HandleFunc("/test", handler)
+	http.Handle("/home", http.StripPrefix("/home", http.FileServer(http.Dir("./build"))))
 	http.ListenAndServe(":8080", nil)
 }
