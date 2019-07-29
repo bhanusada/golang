@@ -10,6 +10,7 @@ import (
 	"strings"
 
 	pdf "github.com/bhanu/edi_automation_testing/pdfParser"
+	"github.com/rs/cors"
 )
 
 type response struct {
@@ -67,8 +68,20 @@ func fileHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	c := cors.New(cors.Options{
+		AllowedOrigins:   []string{"http://foo.com", "http://foo.com:8080"},
+		AllowCredentials: true,
+		// Enable Debugging for testing, consider disabling in production
+		Debug: true,
+	})
+
 	http.HandleFunc("/test", handler)
 	http.HandleFunc("/upload", fileHandler)
+
+	rawHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "%s", r.URL.Query().Get("param"))
+	})
+
 	http.Handle("/home", http.StripPrefix("/home", http.FileServer(http.Dir("./build"))))
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":8080", c.Handler(rawHandler))
 }
