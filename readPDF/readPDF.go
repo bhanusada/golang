@@ -1,9 +1,10 @@
-package main
+package readPDF
 
 import (
 	"bytes"
 	"encoding/json"
 	"io/ioutil"
+	"log"
 	"math"
 	"strings"
 
@@ -43,8 +44,10 @@ func (f *fieldStruct) setminmax(minmax string) {
 	f.Minmax = minmax
 }
 
-func main() {
-	r, _ := pdf.Open("./856_HDPRO_ 4060 [04022019].pdf")
+//PDFParser to parse PDF
+func PDFParser(fname string) {
+	//r, _ := pdf.Open("./856_HDPRO_ 4060 [04022019].pdf")
+	r, _ := pdf.Open("../edi_automation_testing/files/" + fname)
 	segment := ""
 	field := ""
 	num := 0
@@ -121,6 +124,7 @@ func main() {
 	enc.SetIndent("", " ")
 	_ = enc.Encode(edi)
 	_ = ioutil.WriteFile("edi.json", buf.Bytes(), 0644)
+	log.Printf("written json")
 }
 
 func findWords(chars []pdf.Text) (words []pdf.Text) {

@@ -1,0 +1,1291 @@
+[
+ {
+  "name": "ISA",
+  "desc": "Interchange Control Header",
+  "max": "1",
+  "loop": "N/A",
+  "req": "M",
+  "list": [
+   {
+    "name": "ISA01",
+    "id": "I01",
+    "desc": "Authorization Information Qualifier",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "2/2"
+   },
+   {
+    "name": "ISA02",
+    "id": "I02",
+    "desc": "Authorization Information",
+    "req": "M",
+    "datatype": "AN",
+    "minmax": "10/10"
+   },
+   {
+    "name": "ISA03",
+    "id": "I03",
+    "desc": "Security Information Qualifier",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "2/2"
+   },
+   {
+    "name": "ISA04",
+    "id": "I04",
+    "desc": "Security Information",
+    "req": "M",
+    "datatype": "AN",
+    "minmax": "10/10"
+   },
+   {
+    "name": "ISA05",
+    "id": "I05",
+    "desc": "Interchange ID Qualifier",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "2/2"
+   },
+   {
+    "name": "ISA06",
+    "id": "I06",
+    "desc": "Interchange Sender ID",
+    "req": "M",
+    "datatype": "AN",
+    "minmax": "15/15"
+   },
+   {
+    "name": "ISA07",
+    "id": "I05",
+    "desc": "Interchange ID Qualifier",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "2/2"
+   },
+   {
+    "name": "ISA08",
+    "id": "I07",
+    "desc": "Interchange Receiver ID",
+    "req": "M",
+    "datatype": "AN",
+    "minmax": "15/15"
+   },
+   {
+    "name": "ISA09",
+    "id": "I08",
+    "desc": "Interchange Date",
+    "req": "M",
+    "datatype": "DT",
+    "minmax": "6/6"
+   },
+   {
+    "name": "ISA10",
+    "id": "I09",
+    "desc": "Interchange Time",
+    "req": "M",
+    "datatype": "TM",
+    "minmax": "4/4"
+   },
+   {
+    "name": "ISA11",
+    "id": "I65",
+    "desc": "Repetition Separator",
+    "req": "M",
+    "datatype": "1/1",
+    "minmax": "Must use"
+   },
+   {
+    "name": "ISA12",
+    "id": "I11",
+    "desc": "Interchange Control Version Number",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "5/5"
+   },
+   {
+    "name": "ISA13",
+    "id": "I12",
+    "desc": "Interchange Control Number",
+    "req": "M",
+    "datatype": "N0",
+    "minmax": "9/9"
+   },
+   {
+    "name": "ISA14",
+    "id": "I13",
+    "desc": "Acknowledgment Requested",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "1/1"
+   },
+   {
+    "name": "ISA15",
+    "id": "I14",
+    "desc": "Interchange Usage Indicator",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "1/1"
+   },
+   {
+    "name": "ISA16",
+    "id": "I15",
+    "desc": "Component Element Separator",
+    "req": "M",
+    "datatype": "1/1",
+    "minmax": "Must use"
+   }
+  ]
+ },
+ {
+  "name": "GS",
+  "desc": "Functional Group Header",
+  "max": "1",
+  "loop": "N/A",
+  "req": "M",
+  "list": [
+   {
+    "name": "GS01",
+    "id": "479",
+    "desc": "Functional Identifier Code",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "2/2"
+   },
+   {
+    "name": "GS02",
+    "id": "142",
+    "desc": "Application Sender's Code",
+    "req": "M",
+    "datatype": "AN",
+    "minmax": "2/15"
+   },
+   {
+    "name": "GS03",
+    "id": "124",
+    "desc": "Application Receiver's Code",
+    "req": "M",
+    "datatype": "AN",
+    "minmax": "2/15"
+   },
+   {
+    "name": "GS04",
+    "id": "373",
+    "desc": "Date",
+    "req": "M",
+    "datatype": "DT",
+    "minmax": "8/8"
+   },
+   {
+    "name": "GS05",
+    "id": "337",
+    "desc": "Time",
+    "req": "M",
+    "datatype": "TM",
+    "minmax": "4/8"
+   },
+   {
+    "name": "GS06",
+    "id": "28",
+    "desc": "Group Control Number",
+    "req": "M",
+    "datatype": "N0",
+    "minmax": "1/9"
+   },
+   {
+    "name": "GS07",
+    "id": "455",
+    "desc": "Responsible Agency Code",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "1/2"
+   },
+   {
+    "name": "GS08",
+    "id": "480",
+    "desc": "Version / Release / Industry Identifier",
+    "req": "Code",
+    "datatype": "M",
+    "minmax": "AN"
+   }
+  ]
+ },
+ {
+  "name": "ST",
+  "desc": "Transaction Set Header",
+  "max": "1",
+  "loop": "N/A",
+  "req": "M",
+  "list": [
+   {
+    "name": "ST01",
+    "id": "143",
+    "desc": "Transaction Set Identifier Code",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "3/3"
+   },
+   {
+    "name": "ST02",
+    "id": "329",
+    "desc": "Transaction Set Control Number",
+    "req": "M",
+    "datatype": "AN",
+    "minmax": "4/9"
+   }
+  ]
+ },
+ {
+  "name": "BSN",
+  "desc": "Beginning Segment for Ship Notice",
+  "max": "1",
+  "loop": "N/A",
+  "req": "M",
+  "list": [
+   {
+    "name": "BSN01",
+    "id": "353",
+    "desc": "Transaction Set Purpose Code",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "2/2"
+   },
+   {
+    "name": "BSN02",
+    "id": "396",
+    "desc": "Shipment Identification",
+    "req": "M",
+    "datatype": "AN",
+    "minmax": "2/30"
+   },
+   {
+    "name": "BSN03",
+    "id": "373",
+    "desc": "Date",
+    "req": "M",
+    "datatype": "DT",
+    "minmax": "8/8"
+   },
+   {
+    "name": "BSN04",
+    "id": "337",
+    "desc": "Time",
+    "req": "M",
+    "datatype": "TM",
+    "minmax": "4/8"
+   }
+  ]
+ },
+ {
+  "name": "HL",
+  "desc": "Hierarchical Level",
+  "max": "1",
+  "loop": "HL",
+  "req": "M",
+  "list": [
+   {
+    "name": "HL01",
+    "id": "628",
+    "desc": "Hierarchical ID Number",
+    "req": "M",
+    "datatype": "AN",
+    "minmax": "1/12"
+   },
+   {
+    "name": "HL02",
+    "id": "734",
+    "desc": "Hierarchical Parent ID Number",
+    "req": "O",
+    "datatype": "AN",
+    "minmax": "1/12"
+   },
+   {
+    "name": "HL03",
+    "id": "735",
+    "desc": "Hierarchical Level Code",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "1/2"
+   }
+  ]
+ },
+ {
+  "name": "TD1",
+  "desc": "Carrier Details (Quantity and Weight)",
+  "max": "20",
+  "loop": "HL",
+  "req": "N/A",
+  "list": [
+   {
+    "name": "TD101",
+    "id": "103",
+    "desc": "Packaging Code",
+    "req": "O",
+    "datatype": "AN",
+    "minmax": "3/5"
+   },
+   {
+    "name": "TD102",
+    "id": "80",
+    "desc": "Lading Quantity",
+    "req": "X",
+    "datatype": "N0",
+    "minmax": "1/7"
+   },
+   {
+    "name": "TD106",
+    "id": "187",
+    "desc": "Weight Qualifier",
+    "req": "O",
+    "datatype": "ID",
+    "minmax": "1/2"
+   },
+   {
+    "name": "TD107",
+    "id": "81",
+    "desc": "Weight",
+    "req": "X",
+    "datatype": "R",
+    "minmax": "1/10"
+   },
+   {
+    "name": "TD108",
+    "id": "355",
+    "desc": "Unit or Basis for Measurement Code",
+    "req": "X",
+    "datatype": "ID",
+    "minmax": "2/2"
+   }
+  ]
+ },
+ {
+  "name": "TD5",
+  "desc": "Carrier Details (Routing Sequence/Transit Time)",
+  "max": "12",
+  "loop": "HL",
+  "req": "N/A",
+  "list": [
+   {
+    "name": "TD502",
+    "id": "66",
+    "desc": "Identification Code Qualifier",
+    "req": "O",
+    "datatype": "ID",
+    "minmax": "1/2"
+   },
+   {
+    "name": "TD503",
+    "id": "67",
+    "desc": "Identification Code",
+    "req": "X",
+    "datatype": "AN",
+    "minmax": "2/80"
+   },
+   {
+    "name": "TD505",
+    "id": "387",
+    "desc": "Routing",
+    "req": "O",
+    "datatype": "AN",
+    "minmax": "1/35"
+   },
+   {
+    "name": "TD503 to identify the actual routing sequence, specified by the party identified in TD502.",
+    "id": "4/2/2019",
+    "desc": "Ship Notice/Manifest - 856",
+    "req": "856_HDPRO_ 4060 [04022019].ecs",
+    "datatype": "12",
+    "minmax": "For internal use only"
+   }
+  ]
+ },
+ {
+  "name": "REF",
+  "desc": "Reference Information",
+  "max": ">1",
+  "loop": "HL",
+  "req": "N/A",
+  "list": [
+   {
+    "name": "REF01",
+    "id": "128",
+    "desc": "Reference Identification Qualifier",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "2/3"
+   },
+   {
+    "name": "REF02",
+    "id": "127",
+    "desc": "Reference Identification",
+    "req": "C",
+    "datatype": "AN",
+    "minmax": "1/50"
+   }
+  ]
+ },
+ {
+  "name": "DTM",
+  "desc": "Date/Time Reference",
+  "max": "10",
+  "loop": "HL",
+  "req": "N/A",
+  "list": [
+   {
+    "name": "DTM01",
+    "id": "374",
+    "desc": "Date/Time Qualifier",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "3/3"
+   },
+   {
+    "name": "DTM02",
+    "id": "373",
+    "desc": "Date",
+    "req": "X",
+    "datatype": "DT",
+    "minmax": "8/8"
+   }
+  ]
+ },
+ {
+  "name": "N1",
+  "desc": "Party Identification",
+  "max": "1",
+  "loop": "N1",
+  "req": "N/A",
+  "list": [
+   {
+    "name": "N101",
+    "id": "98",
+    "desc": "Entity Identifier Code",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "2/3"
+   },
+   {
+    "name": "N102",
+    "id": "93",
+    "desc": "Name",
+    "req": "O",
+    "datatype": "AN",
+    "minmax": "1/60"
+   },
+   {
+    "name": "N103",
+    "id": "66",
+    "desc": "Identification Code Qualifier",
+    "req": "X",
+    "datatype": "ID",
+    "minmax": "1/2"
+   },
+   {
+    "name": "N104",
+    "id": "67",
+    "desc": "Identification Code",
+    "req": "X",
+    "datatype": "AN",
+    "minmax": "2/80"
+   }
+  ]
+ },
+ {
+  "name": "N3",
+  "desc": "Party Location",
+  "max": "2",
+  "loop": "N1",
+  "req": "N/A",
+  "list": [
+   {
+    "name": "N301",
+    "id": "166",
+    "desc": "Address Information",
+    "req": "M",
+    "datatype": "AN",
+    "minmax": "1/55"
+   },
+   {
+    "name": "N302",
+    "id": "166",
+    "desc": "Address Information",
+    "req": "O",
+    "datatype": "AN",
+    "minmax": "1/55"
+   }
+  ]
+ },
+ {
+  "name": "N4",
+  "desc": "Geographic Location",
+  "max": "1",
+  "loop": "N1",
+  "req": "N/A",
+  "list": [
+   {
+    "name": "N401",
+    "id": "19",
+    "desc": "City Name",
+    "req": "O",
+    "datatype": "AN",
+    "minmax": "2/30"
+   },
+   {
+    "name": "N402",
+    "id": "156",
+    "desc": "State or Province Code",
+    "req": "X",
+    "datatype": "ID",
+    "minmax": "2/2"
+   },
+   {
+    "name": "N403",
+    "id": "116",
+    "desc": "Postal Code",
+    "req": "O",
+    "datatype": "ID",
+    "minmax": "3/15"
+   },
+   {
+    "name": "N404",
+    "id": "26",
+    "desc": "Country Code",
+    "req": "O",
+    "datatype": "ID",
+    "minmax": "2/3"
+   },
+   {
+    "name": "N405",
+    "id": "309",
+    "desc": "Location Qualifier",
+    "req": "X",
+    "datatype": "ID",
+    "minmax": "1/2"
+   },
+   {
+    "name": "N406",
+    "id": "310",
+    "desc": "Location Identifier",
+    "req": "O",
+    "datatype": "AN",
+    "minmax": "1/30"
+   }
+  ]
+ },
+ {
+  "name": "N1",
+  "desc": "Party Identification",
+  "max": "1",
+  "loop": "N1",
+  "req": "N/A",
+  "list": [
+   {
+    "name": "N101",
+    "id": "98",
+    "desc": "Entity Identifier Code",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "2/3"
+   },
+   {
+    "name": "N102",
+    "id": "93",
+    "desc": "Name",
+    "req": "O",
+    "datatype": "AN",
+    "minmax": "1/60"
+   },
+   {
+    "name": "N103",
+    "id": "66",
+    "desc": "Identification Code Qualifier",
+    "req": "X",
+    "datatype": "ID",
+    "minmax": "1/2"
+   },
+   {
+    "name": "N104",
+    "id": "67",
+    "desc": "Identification Code",
+    "req": "X",
+    "datatype": "AN",
+    "minmax": "2/80"
+   }
+  ]
+ },
+ {
+  "name": "N3",
+  "desc": "Party Location",
+  "max": "2",
+  "loop": "N1",
+  "req": "N/A",
+  "list": [
+   {
+    "name": "N301",
+    "id": "166",
+    "desc": "Address Information",
+    "req": "M",
+    "datatype": "AN",
+    "minmax": "1/55"
+   },
+   {
+    "name": "N302",
+    "id": "166",
+    "desc": "Address Information",
+    "req": "O",
+    "datatype": "AN",
+    "minmax": "1/55"
+   }
+  ]
+ },
+ {
+  "name": "N4",
+  "desc": "Geographic Location",
+  "max": "1",
+  "loop": "N1",
+  "req": "N/A",
+  "list": [
+   {
+    "name": "N401",
+    "id": "19",
+    "desc": "City Name",
+    "req": "O",
+    "datatype": "AN",
+    "minmax": "2/30"
+   },
+   {
+    "name": "N402",
+    "id": "156",
+    "desc": "State or Province Code",
+    "req": "X",
+    "datatype": "ID",
+    "minmax": "2/2"
+   },
+   {
+    "name": "N403",
+    "id": "116",
+    "desc": "Postal Code",
+    "req": "O",
+    "datatype": "ID",
+    "minmax": "3/15"
+   },
+   {
+    "name": "N404",
+    "id": "26",
+    "desc": "Country Code",
+    "req": "O",
+    "datatype": "ID",
+    "minmax": "2/3"
+   }
+  ]
+ },
+ {
+  "name": "N1",
+  "desc": "Party Identification",
+  "max": "1",
+  "loop": "N1",
+  "req": "N/A",
+  "list": [
+   {
+    "name": "N101",
+    "id": "98",
+    "desc": "Entity Identifier Code",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "2/3"
+   },
+   {
+    "name": "N102",
+    "id": "93",
+    "desc": "Name",
+    "req": "O",
+    "datatype": "AN",
+    "minmax": "1/60"
+   },
+   {
+    "name": "N103",
+    "id": "66",
+    "desc": "Identification Code Qualifier",
+    "req": "X",
+    "datatype": "ID",
+    "minmax": "1/2"
+   },
+   {
+    "name": "N104",
+    "id": "67",
+    "desc": "Identification Code",
+    "req": "X",
+    "datatype": "AN",
+    "minmax": "2/80"
+   }
+  ]
+ },
+ {
+  "name": "N3",
+  "desc": "Party Location",
+  "max": "2",
+  "loop": "N1",
+  "req": "N/A",
+  "list": [
+   {
+    "name": "N301",
+    "id": "166",
+    "desc": "Address Information",
+    "req": "M",
+    "datatype": "AN",
+    "minmax": "1/55"
+   },
+   {
+    "name": "N302",
+    "id": "166",
+    "desc": "Address Information",
+    "req": "O",
+    "datatype": "AN",
+    "minmax": "1/55"
+   }
+  ]
+ },
+ {
+  "name": "N4",
+  "desc": "Geographic Location",
+  "max": "1",
+  "loop": "N1",
+  "req": "N/A",
+  "list": [
+   {
+    "name": "N401",
+    "id": "19",
+    "desc": "City Name",
+    "req": "O",
+    "datatype": "AN",
+    "minmax": "2/30"
+   },
+   {
+    "name": "N402",
+    "id": "156",
+    "desc": "State or Province Code",
+    "req": "X",
+    "datatype": "ID",
+    "minmax": "2/2"
+   },
+   {
+    "name": "N403",
+    "id": "116",
+    "desc": "Postal Code",
+    "req": "O",
+    "datatype": "ID",
+    "minmax": "3/15"
+   },
+   {
+    "name": "N404",
+    "id": "26",
+    "desc": "Country Code",
+    "req": "O",
+    "datatype": "ID",
+    "minmax": "2/3"
+   }
+  ]
+ },
+ {
+  "name": "HL",
+  "desc": "Hierarchical Level",
+  "max": "1",
+  "loop": "HL",
+  "req": "M",
+  "list": [
+   {
+    "name": "HL01",
+    "id": "628",
+    "desc": "Hierarchical ID Number",
+    "req": "M",
+    "datatype": "AN",
+    "minmax": "1/12"
+   },
+   {
+    "name": "HL02",
+    "id": "734",
+    "desc": "Hierarchical Parent ID Number",
+    "req": "O",
+    "datatype": "AN",
+    "minmax": "1/12"
+   },
+   {
+    "name": "HL03",
+    "id": "735",
+    "desc": "Hierarchical Level Code",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "1/2"
+   }
+  ]
+ },
+ {
+  "name": "PRF",
+  "desc": "Purchase Order Reference",
+  "max": "1",
+  "loop": "HL",
+  "req": "N/A",
+  "list": [
+   {
+    "name": "PRF01",
+    "id": "324",
+    "desc": "Purchase Order Number",
+    "req": "M",
+    "datatype": "AN",
+    "minmax": "1/22"
+   }
+  ]
+ },
+ {
+  "name": "TD1",
+  "desc": "Carrier Details (Quantity and Weight)",
+  "max": "20",
+  "loop": "HL",
+  "req": "N/A",
+  "list": [
+   {
+    "name": "TD106",
+    "id": "187",
+    "desc": "Weight Qualifier",
+    "req": "O",
+    "datatype": "ID",
+    "minmax": "1/2"
+   },
+   {
+    "name": "TD107",
+    "id": "81",
+    "desc": "Weight",
+    "req": "X",
+    "datatype": "R",
+    "minmax": "1/10"
+   },
+   {
+    "name": "TD108",
+    "id": "355",
+    "desc": "Unit or Basis for Measurement Code",
+    "req": "O",
+    "datatype": "ID",
+    "minmax": "2/2"
+   }
+  ]
+ },
+ {
+  "name": "MAN",
+  "desc": "Marks and Numbers Information",
+  "max": ">1",
+  "loop": "HL",
+  "req": "N/A",
+  "list": [
+   {
+    "name": "MAN01",
+    "id": "88",
+    "desc": "Marks and Numbers Qualifier",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "1/2"
+   },
+   {
+    "name": "MAN02",
+    "id": "87",
+    "desc": "Marks and Numbers",
+    "req": "M",
+    "datatype": "AN",
+    "minmax": "1/48"
+   }
+  ]
+ },
+ {
+  "name": "HL",
+  "desc": "Hierarchical Level",
+  "max": "1",
+  "loop": "HL",
+  "req": "M",
+  "list": [
+   {
+    "name": "HL01",
+    "id": "628",
+    "desc": "Hierarchical ID Number",
+    "req": "M",
+    "datatype": "AN",
+    "minmax": "1/12"
+   },
+   {
+    "name": "HL02",
+    "id": "734",
+    "desc": "Hierarchical Parent ID Number",
+    "req": "O",
+    "datatype": "AN",
+    "minmax": "1/12"
+   },
+   {
+    "name": "HL03",
+    "id": "735",
+    "desc": "Hierarchical Level Code",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "1/2"
+   }
+  ]
+ },
+ {
+  "name": "MAN",
+  "desc": "Marks and Numbers Information",
+  "max": ">1",
+  "loop": "HL",
+  "req": "N/A",
+  "list": [
+   {
+    "name": "MAN01",
+    "id": "88",
+    "desc": "Marks and Numbers Qualifier",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "1/2"
+   },
+   {
+    "name": "MAN02",
+    "id": "87",
+    "desc": "Marks and Numbers",
+    "req": "M",
+    "datatype": "AN",
+    "minmax": "1/48"
+   }
+  ]
+ },
+ {
+  "name": "HL",
+  "desc": "Hierarchical Level",
+  "max": "1",
+  "loop": "HL",
+  "req": "M",
+  "list": [
+   {
+    "name": "HL01",
+    "id": "628",
+    "desc": "Hierarchical ID Number",
+    "req": "M",
+    "datatype": "AN",
+    "minmax": "1/12"
+   },
+   {
+    "name": "HL02",
+    "id": "734",
+    "desc": "Hierarchical Parent ID Number",
+    "req": "O",
+    "datatype": "AN",
+    "minmax": "1/12"
+   },
+   {
+    "name": "HL03",
+    "id": "735",
+    "desc": "Hierarchical Level Code",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "1/2"
+   }
+  ]
+ },
+ {
+  "name": "LIN",
+  "desc": "Item Identification",
+  "max": "1",
+  "loop": "HL",
+  "req": "N/A",
+  "list": [
+   {
+    "name": "LIN01",
+    "id": "350",
+    "desc": "Assigned Identification",
+    "req": "O",
+    "datatype": "AN",
+    "minmax": "1/20"
+   },
+   {
+    "name": "LIN02",
+    "id": "235",
+    "desc": "Product/Service ID Qualifier",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "2/2"
+   },
+   {
+    "name": "LIN03",
+    "id": "234",
+    "desc": "Product/Service ID",
+    "req": "M",
+    "datatype": "AN",
+    "minmax": "1/48"
+   },
+   {
+    "name": "LIN04",
+    "id": "235",
+    "desc": "Product/Service ID Qualifier",
+    "req": "X",
+    "datatype": "ID",
+    "minmax": "2/2"
+   },
+   {
+    "name": "LIN05",
+    "id": "234",
+    "desc": "Product/Service ID",
+    "req": "X",
+    "datatype": "AN",
+    "minmax": "1/48"
+   },
+   {
+    "name": "LIN06",
+    "id": "235",
+    "desc": "Product/Service ID Qualifier",
+    "req": "X",
+    "datatype": "ID",
+    "minmax": "2/2"
+   },
+   {
+    "name": "LIN07",
+    "id": "234",
+    "desc": "Product/Service ID",
+    "req": "X",
+    "datatype": "AN",
+    "minmax": "1/48"
+   }
+  ]
+ },
+ {
+  "name": "SN1",
+  "desc": "Item Detail (Shipment)",
+  "max": "1",
+  "loop": "HL",
+  "req": "N/A",
+  "list": [
+   {
+    "name": "SN101",
+    "id": "350",
+    "desc": "Assigned Identification",
+    "req": "O",
+    "datatype": "AN",
+    "minmax": "1/20"
+   },
+   {
+    "name": "SN102",
+    "id": "382",
+    "desc": "Number of Units Shipped",
+    "req": "M",
+    "datatype": "R",
+    "minmax": "1/10"
+   },
+   {
+    "name": "SN103",
+    "id": "355",
+    "desc": "Unit or Basis for Measurement Code",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "2/2"
+   }
+  ]
+ },
+ {
+  "name": "SLN",
+  "desc": "Subline Item Detail",
+  "max": "1000",
+  "loop": "HL",
+  "req": "N/A",
+  "list": [
+   {
+    "name": "SLN01",
+    "id": "350",
+    "desc": "Assigned Identification",
+    "req": "M",
+    "datatype": "AN",
+    "minmax": "1/20"
+   },
+   {
+    "name": "SLN02",
+    "id": "350",
+    "desc": "Assigned Identification",
+    "req": "O",
+    "datatype": "AN",
+    "minmax": "1/20"
+   },
+   {
+    "name": "SLN03",
+    "id": "662",
+    "desc": "Relationship Code",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "1/1"
+   },
+   {
+    "name": "SLN04",
+    "id": "380",
+    "desc": "Quantity",
+    "req": "X",
+    "datatype": "R",
+    "minmax": "1/15"
+   },
+   {
+    "name": "SLN05",
+    "id": "C001",
+    "desc": "Composite Unit of Measure",
+    "req": "X",
+    "datatype": "Comp",
+    "minmax": "Used"
+   },
+   {
+    "name": "SLN05-01",
+    "id": "355",
+    "desc": "Unit or Basis for Measurement Code",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "2/2"
+   },
+   {
+    "name": "SLN06",
+    "id": "212",
+    "desc": "Unit Price",
+    "req": "X",
+    "datatype": "R",
+    "minmax": "1/17"
+   }
+  ]
+ },
+ {
+  "name": "PO4",
+  "desc": "Item Physical Details",
+  "max": "1",
+  "loop": "HL",
+  "req": "N/A",
+  "list": [
+   {
+    "name": "PO401",
+    "id": "356",
+    "desc": "Pack",
+    "req": "O",
+    "datatype": "N0",
+    "minmax": "1/6"
+   },
+   {
+    "name": "PO402",
+    "id": "357",
+    "desc": "Size",
+    "req": "X",
+    "datatype": "R",
+    "minmax": "1/8"
+   },
+   {
+    "name": "PO403",
+    "id": "355",
+    "desc": "Unit or Basis for Measurement Code",
+    "req": "X",
+    "datatype": "ID",
+    "minmax": "2/2"
+   },
+   {
+    "name": "PO404",
+    "id": "103",
+    "desc": "Packaging Code",
+    "req": "O",
+    "datatype": "AN",
+    "minmax": "3/5"
+   }
+  ]
+ },
+ {
+  "name": "PID",
+  "desc": "Product/Item Description",
+  "max": "200",
+  "loop": "HL",
+  "req": "N/A",
+  "list": [
+   {
+    "name": "PID01",
+    "id": "349",
+    "desc": "Item Description Type",
+    "req": "M",
+    "datatype": "ID",
+    "minmax": "1/1"
+   },
+   {
+    "name": "PID05",
+    "id": "352",
+    "desc": "Description",
+    "req": "X",
+    "datatype": "AN",
+    "minmax": "1/80"
+   }
+  ]
+ },
+ {
+  "name": "CTT",
+  "desc": "Transaction Totals",
+  "max": "1",
+  "loop": "N/A",
+  "req": "N/A",
+  "list": [
+   {
+    "name": "CTT01",
+    "id": "354",
+    "desc": "Number of Line Items",
+    "req": "M",
+    "datatype": "N0",
+    "minmax": "1/6"
+   },
+   {
+    "name": "CTT02",
+    "id": "347",
+    "desc": "Hash Total",
+    "req": "O",
+    "datatype": "R",
+    "minmax": "1/10"
+   }
+  ]
+ },
+ {
+  "name": "SE",
+  "desc": "Transaction Set Trailer",
+  "max": "1",
+  "loop": "N/A",
+  "req": "M",
+  "list": [
+   {
+    "name": "SE01",
+    "id": "96",
+    "desc": "Number of Included Segments",
+    "req": "M",
+    "datatype": "N0",
+    "minmax": "1/10"
+   },
+   {
+    "name": "SE02",
+    "id": "329",
+    "desc": "Transaction Set Control Number",
+    "req": "M",
+    "datatype": "AN",
+    "minmax": "4/9"
+   }
+  ]
+ },
+ {
+  "name": "GE",
+  "desc": "Functional Group Trailer",
+  "max": "1",
+  "loop": "N/A",
+  "req": "M",
+  "list": [
+   {
+    "name": "GE01",
+    "id": "97",
+    "desc": "Number of Transaction Sets Included",
+    "req": "M",
+    "datatype": "N0",
+    "minmax": "1/6"
+   },
+   {
+    "name": "GE02",
+    "id": "28",
+    "desc": "Group Control Number",
+    "req": "M",
+    "datatype": "N0",
+    "minmax": "1/9"
+   }
+  ]
+ }
+]
