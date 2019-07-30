@@ -10,7 +10,7 @@ import (
 	"strings"
 
 	pdf "github.com/bhanu/edi_automation_testing/pdfParser"
-	"github.com/rs/cors"
+	"github.com/gorilla/mux"
 )
 
 type response struct {
@@ -32,7 +32,7 @@ func handler(res http.ResponseWriter, req *http.Request) {
 }
 
 func fileHandler(w http.ResponseWriter, r *http.Request) {
-
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	log.Printf("Got the requuest")
 
 	var res response
@@ -62,26 +62,40 @@ func fileHandler(w http.ResponseWriter, r *http.Request) {
 			res.TXO.Processed = true
 		}
 	}
-	responseData, _ := json.Marshal(res)
-	w.Write(responseData)
+	//responseData, _ := json.Marshal(res)
+	json.NewEncoder(w).Encode(res)
+	//w.Write(responseData)
 	//fmt.Fprintf(w, res)
 }
 
 func main() {
-	c := cors.New(cors.Options{
-		AllowedOrigins:   []string{"http://foo.com", "http://foo.com:8080"},
-		AllowCredentials: true,
-		// Enable Debugging for testing, consider disabling in production
-		Debug: true,
-	})
+	/*c := cors.New(cors.Options{
+		AllowedMethods:     []string{"GET", "POST", "OPTIONS"},
+		AllowedOrigins:     []string{"*"},
+		AllowCredentials:   true,
+		AllowedHeaders:     []string{"Content-Type", "Bearer", "Bearer ", "content-type", "Origin", "Accept"},
+		OptionsPassthrough: true,
+	})*/
 
-	http.HandleFunc("/test", handler)
-	http.HandleFunc("/upload", fileHandler)
+	r := mux.NewRouter()
 
-	rawHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	r.HandleFunc("/upload", fileHandler).Methods(http.MethodGet, http.MethodPut, http.MethodPost, http.MethodPatch, http.MethodOptions)
+	r.Use(mux.CORSMethodMiddleware(r))
+
+	r.HandleFunc("/test", handler).Methods("GET")
+
+	r.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("build"))))
+
+	//mux := http.NewServeMux()
+	//mux.HandleFunc("/test", handler)
+	//mux.HandleFunc("/upload", fileHandler)
+
+	/*rawHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "%s", r.URL.Query().Get("param"))
-	})
+	})*/
 
-	http.Handle("/home", http.StripPrefix("/home", http.FileServer(http.Dir("./build"))))
-	http.ListenAndServe(":8080", c.Handler(rawHandler))
+	//http.Handle("/home", http.StripPrefix("/home", http.FileServer(http.Dir("./build"))))
+
+	//handler := c.Handler(mux)
+	http.ListenAndServe(":8080", r)
 }
